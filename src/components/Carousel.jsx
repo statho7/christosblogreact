@@ -34,9 +34,10 @@ const Wrap = styled.div`
     img {
         border: 4px solid transparent;
         /* border: 0.25px solid rgb(249, 249, 249, 0.1); */
-        border-radius: 15px;
+        border-radius: 55px;
+        /* margin: 10px; */
         
-        width: 100%;
+        width: 95%;
         height: 100%;
         min-height: 100px;
 
@@ -46,7 +47,6 @@ const Wrap = styled.div`
 
         &:hover {
             border: 4px solid rgb(249, 249, 249, 0.8);
-            /* height: calc(100% - 3.75px); */
         }
     }
 `
@@ -56,7 +56,7 @@ const Carousel = () => {
         dots: true,
         infinite: true,
         speed: 1500,
-        slidesToShow: 3,
+        slidesToShow: 2,
         slidesToScroll: 1,
         autoplay: true
     }

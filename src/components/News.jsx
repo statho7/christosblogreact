@@ -9,6 +9,9 @@ const Container = styled.div`
     padding-bottom: 45px;
     /* background: linear-gradient(to right, #182147 , white, #182147 ); */
     /* background: linear-gradient(to right, #182147 10%, white 50%, #182147 ); */
+    /* background-image: radial-gradient(circle, #182147, white , #182147); */
+    /* background: radial-gradient(#746bd8, #182147); */
+    /* background: linear-gradient(#e66465, #9198e5); */
 `
 
 const Content = styled.div`
@@ -43,7 +46,45 @@ const Wrap = styled.div`
 `
 
 const News = () => {
-    const news = useSelector(selectNews);
+    const [news, setNews] = useState([]);
+  
+    // useEffect(() => {
+    //   (async function () {
+    //     const { articles } = await( await fetch(`/api/Articles/GetAllArticles`)).json();
+    //     setNews(articles);
+    //   })();
+    // });
+
+    const url = `/api/GetAllArticles`;
+    useEffect(() => {
+        fetch(url,{method: "GET"})
+        .then(res => {
+            console.log(res);
+            if(!res.ok){
+                throw Error('Could not fetch the data for that resource');
+            }
+            return res.json();
+        })
+        .then(data =>{
+            console.log("lolo",data);
+            setNews(data);
+                // dispatch(
+                //     setMovies({
+                //       movies: data
+                //     })
+                //   );
+        //   setIsPending(false);
+        //   setError(null);
+        })
+        .catch(err =>{
+          console.log("yolo",err);
+            // setError(err.message);
+            // setIsPending(false);
+        })
+    }, [url]);
+
+    // const news = data;
+    // console.log(news);
     const [footballnews, setFootballnews] = useState([]);
     const [basketballnews, setBasketballnews] = useState([]);
     const [othernews, setOthernews] = useState([]);

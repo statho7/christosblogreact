@@ -1,5 +1,6 @@
 import './App.css';
 import Home from './components/Home';
+import Navbar from './components/Navbar';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,6 +11,7 @@ import {
 const App = () => {
   return (
     <Router>
+      <Navbar />
       <Switch>
         <Route exact path="/">
           <Home />
