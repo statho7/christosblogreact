@@ -1,8 +1,8 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+// import { useSelector } from 'react-redux'
 import { Link } from "react-router-dom";
 import styled from 'styled-components'
-import { selectNews } from '../redux/newsRedux'
+// import { selectNews } from '../redux/newsRedux'
 import { useEffect, useState } from "react";
 
 const Container = styled.div`
@@ -85,9 +85,12 @@ const News = () => {
 
     // const news = data;
     // console.log(news);
-    const [footballnews, setFootballnews] = useState([]);
-    const [basketballnews, setBasketballnews] = useState([]);
-    const [othernews, setOthernews] = useState([]);
+    // const [footballnews, setFootballnews] = useState([]);
+    // const [basketballnews, setBasketballnews] = useState([]);
+    // const [othernews, setOthernews] = useState([]);
+    const footballnews  = [];
+    const basketballnews  = [];
+    const othernews  = [];
     
     return (
         <Container>
