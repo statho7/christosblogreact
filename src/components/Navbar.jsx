@@ -11,6 +11,10 @@ const Nav = styled.nav`
     align-items: center;
     padding: 0 36px;
     overflow-x: hidden;
+
+    @media only screen and (max-width: 500px) {
+        padding: 0 0.5px;
+    }
 `
 
 const NavMenu = styled.div`
@@ -20,11 +24,19 @@ const NavMenu = styled.div`
     margin-left: 15px;
     align-items: center;
 
+    @media only screen and (max-width: 500px) {
+        margin-left: 5px;
+    }
+
     a {
         display: flex;
         align-items: center;
         padding: 0 12px;
         cursor: pointer;
+
+        @media only screen and (max-width: 500px) {
+            padding: 0 2px;
+        }
 
         img {
             height: 20px;
@@ -65,6 +77,16 @@ const Wrap = styled.div`
     display: flex;
     margin-left: auto; 
     margin-right: 0;
+    
+    @media only screen and (max-width: 500px) {
+        a{
+            padding: 0 5px;
+        }
+
+        span {
+            text-indent: -9999px; 
+        }
+    }
 `
 
 const Navbar = () => {
@@ -108,54 +130,3 @@ const Navbar = () => {
 }
 
 export default Navbar
-
-// /* eslint-disable jsx-a11y/alt-text */
-// /* eslint-disable jsx-a11y/anchor-is-valid */
-// import React from 'react'
-// import styled from 'styled-components'
-
-// function Header() {
-//     return (
-//         <Nav>
-//             <Logo src="/images/logo.svg" />
-//             <NavMenu>
-//                 <Link to="/">
-//                 <a>
-//                     <img src="/images/home-icon.svg" />
-//                     <span>HOME</span>
-//                 </a>
-//                 </Link>
-
-//                 <a>
-//                     <img src="/images/search-icon.svg" />
-//                     <span>SEARCH</span>
-//                 </a>
-
-//                 <a>
-//                     <img src="/images/watchlist-icon.svg" />
-//                     <span>WATCHLIST</span>
-//                 </a>
-
-//                 <a>
-//                     <img src="/images/original-icon.svg" />
-//                     <span>ORIGINALS</span>
-//                 </a>
-
-//                 <a>
-//                     <img src="/images/movie-icon.svg" />
-//                     <span>MOVIES</span>
-//                 </a>
-
-//                 <a>
-//                     <img src="/images/series-icon.svg" />
-//                     <span>SERIES</span>
-//                 </a>
-//             </NavMenu>
-//             <UserImg src="https://media-exp1.licdn.com/dms/image/C4D03AQEAvFhaBxi-eQ/profile-displayphoto-shrink_200_200/0/1603974130110?e=1642032000&v=beta&t=0KdEqQPmlpTPcPOEf1S1EPKX-fabr_mWuqdCJO0BvSY" />
-        
-//         </Nav>
-//     )
-// }
-
-// export default Header
-

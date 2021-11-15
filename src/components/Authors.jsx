@@ -4,13 +4,21 @@ import styled from 'styled-components'
 
 const Container = styled.div`
     margin-top: 30px;
+    margin-left: 10vw;
     display: grid;
     padding: 30px 0px 26px;
-    grid-gap: 25px;
+    grid-gap: 40vw;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    @media only screen and (max-width: 500px) {
+        margin-left: 2vw;
+        grid-gap: 8vw;
+    }
 `
 
 const Wrap = styled.div`
+    max-width: 360px;
+    max-height: 220px;
     border-radius: 55px;
     cursor: pointer;
     border: 3px solid rgba(249, 249, 249, 0.1);
@@ -30,6 +38,8 @@ const Wrap = styled.div`
         transform: scale(1.05);
         border-color: rgba(240, 240, 240, 0.9);
     }
+
+    
 `
 
 const Authors = () => {

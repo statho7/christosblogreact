@@ -21,8 +21,10 @@ const Content = styled.div`
 `
 
 const Wrap = styled.div`
-    max-height: 400px;
-    max-width: 500px;
+    min-height: 100px;
+    min-width: 100px;
+    max-height: 12vh;
+    max-width: 17vh;
     border-radius: 10px;
     cursor: pointer;
     overflow: hidden;
@@ -55,7 +57,7 @@ const News = () => {
     //   })();
     // });
 
-    const url = `/api/GetAllArticles`;
+    const url = `http://localhost:7071/api/GetAllArticles`;
     useEffect(() => {
         fetch(url,{method: "GET"})
         .then(res => {
@@ -67,7 +69,7 @@ const News = () => {
         })
         .then(data =>{
             console.log("lolo",data);
-            setNews(data);
+            setNews(data.slice(0,20));
                 // dispatch(
                 //     setMovies({
                 //       movies: data
@@ -88,19 +90,24 @@ const News = () => {
     // const [footballnews, setFootballnews] = useState([]);
     // const [basketballnews, setBasketballnews] = useState([]);
     // const [othernews, setOthernews] = useState([]);
-    const footballnews  = [];
-    const basketballnews  = [];
-    const othernews  = [];
+    const latestNews = news.sort(function(a,b){
+        // Turn your strings into dates, and then subtract them
+        // to get a value that is either negative, positive, or zero.
+        return new Number(b.id) - new Number(a.id);
+      }).slice(0,4);
+    const footballnews  = news.filter(blog => blog.category === "Ποδόσφαιρο").slice(0,4);
+    const basketballnews  = news.filter(blog => blog.category === "Καλαθοσφαίριση").slice(0,4);
+    const othernews  = news.filter(blog => blog.category === "Άλλα").slice(0,4);
     
     return (
         <Container>
             <h4>Τελευταία Νέα</h4>
             <Content>
-                {news &&
-                news.map((blog) =>(
+                {latestNews &&
+                latestNews.map((blog) =>(
                     <Wrap key={blog.id}>
                         <Link to={`/detail/` + blog.id}>
-                            <img src={blog.cardImg} alt={blog.title} />
+                            <img src={blog.imgLink} alt={blog.title} />
                         </Link>
                     </Wrap>
                 ))}
@@ -111,7 +118,7 @@ const News = () => {
                 footballnews.map((footballblog) =>(
                     <Wrap key={footballblog.id}>
                         <Link to={`/detail/` + footballblog.id}>
-                            <img src={footballblog.cardImg} alt={footballblog.title} />
+                            <img src={footballblog.imgLink} alt={footballblog.title} />
                         </Link>
                     </Wrap>
                 ))}
@@ -122,7 +129,7 @@ const News = () => {
                 basketballnews.map((basketballblog) =>(
                     <Wrap key={basketballblog.id}>
                         <Link to={`/detail/` + basketballblog.id}>
-                            <img src={basketballblog.cardImg} alt={basketballblog.title} />
+                            <img src={basketballblog.imgLink} alt={basketballblog.title} />
                         </Link>
                     </Wrap>
                 ))}
@@ -133,7 +140,7 @@ const News = () => {
                 othernews.map((otherblog) =>(
                     <Wrap key={otherblog.id}>
                         <Link to={`/detail/` + otherblog.id}>
-                            <img src={otherblog.cardImg} alt={otherblog.title} />
+                            <img src={otherblog.imgLink} alt={otherblog.title} />
                         </Link>
                     </Wrap>
                 ))}
