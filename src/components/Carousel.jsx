@@ -29,10 +29,15 @@ const ImgSlider = styled(Slider)`
         z-index: 1;
     }
 
+    /* .slick-slide.slick-active{
+        padding-right: 40px;
+    } */
+
 `
 
 const Wrap = styled.div`
     cursor: pointer;
+        padding-right: 25px;
 
     img {
         border: 4px solid transparent;
@@ -59,6 +64,10 @@ const Wrap = styled.div`
 const getWidth = () => window.innerWidth;
 
 const Carousel = () => {
+    const [dimensions, setDimensions] = React.useState({ 
+        height: window.innerHeight,
+        width: window.innerWidth
+      })
     const [news, setNews] = useState([]);
 
     const url = `http://localhost:7071/api/GetCarousel`;
@@ -87,6 +96,14 @@ const Carousel = () => {
             // setError(err.message);
             // setIsPending(false);
         })
+        function handleResize() {
+          setDimensions({
+            height: window.innerHeight,
+            width: window.innerWidth
+          })
+        console.log(dimensions)
+    }
+        window.addEventListener('resize', handleResize)
     }, [url]);
     window.addEventListener("resize", console.log('yolo'))
     let settings = {
