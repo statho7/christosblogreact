@@ -48,8 +48,10 @@ const Wrap = styled.div`
 `
 
 const News = () => {
-    const [news, setNews] = useState([]);
-  
+    const [latestNews, setLatestNews] = useState([]);
+    const [footballnews, setFootballnews] = useState([]);
+    const [basketballnews, setBasketballnews] = useState([]);
+    const [othernews, setOthernews] = useState([]);
     // useEffect(() => {
     //   (async function () {
     //     const { articles } = await( await fetch(`/api/Articles/GetAllArticles`)).json();
@@ -57,9 +59,8 @@ const News = () => {
     //   })();
     // });
 
-    const url = `http://localhost:7071/api/GetAllArticles`;
     useEffect(() => {
-        fetch(url,{method: "GET"})
+        fetch(`http://localhost:7071/api/GetLatestArticles`,{method: "GET"})
         .then(res => {
             console.log(res);
             if(!res.ok){
@@ -69,35 +70,74 @@ const News = () => {
         })
         .then(data =>{
             console.log("lolo",data);
-            setNews(data.slice(0,20));
-                // dispatch(
-                //     setMovies({
-                //       movies: data
-                //     })
-                //   );
-        //   setIsPending(false);
-        //   setError(null);
+            setLatestNews(data.slice(0,20));
         })
         .catch(err =>{
           console.log("yolo",err);
-            // setError(err.message);
-            // setIsPending(false);
         })
-    }, [url]);
+
+        
+        fetch(`http://localhost:7071/api/GetFootballArticles`,{method: "GET"})
+        .then(res => {
+            console.log(res);
+            if(!res.ok){
+                throw Error('Could not fetch the data for that resource');
+            }
+            return res.json();
+        })
+        .then(data =>{
+            console.log("lolo",data);
+            setFootballnews(data.slice(0,20));
+        })
+        .catch(err =>{
+          console.log("yolo",err);
+        })
+
+        
+        fetch(`http://localhost:7071/api/GetBasketballArticles`,{method: "GET"})
+        .then(res => {
+            console.log(res);
+            if(!res.ok){
+                throw Error('Could not fetch the data for that resource');
+            }
+            return res.json();
+        })
+        .then(data =>{
+            console.log("lolo",data);
+            setBasketballnews(data.slice(0,20));
+        })
+        .catch(err =>{
+          console.log("yolo",err);
+        })
+
+        
+        fetch(`http://localhost:7071/api/GetOtherArticles`,{method: "GET"})
+        .then(res => {
+            console.log(res);
+            if(!res.ok){
+                throw Error('Could not fetch the data for that resource');
+            }
+            return res.json();
+        })
+        .then(data =>{
+            console.log("lolo",data);
+            setOthernews(data.slice(0,20));
+        })
+        .catch(err =>{
+          console.log("yolo",err);
+        })
+    }, [latestNews, footballnews, basketballnews, othernews]);
 
     // const news = data;
     // console.log(news);
-    // const [footballnews, setFootballnews] = useState([]);
-    // const [basketballnews, setBasketballnews] = useState([]);
-    // const [othernews, setOthernews] = useState([]);
-    const latestNews = news.sort(function(a,b){
-        // Turn your strings into dates, and then subtract them
-        // to get a value that is either negative, positive, or zero.
-        return new Number(b.id) - new Number(a.id);
-      }).slice(0,4);
-    const footballnews  = news.filter(blog => blog.category === "Ποδόσφαιρο").slice(0,4);
-    const basketballnews  = news.filter(blog => blog.category === "Καλαθοσφαίριση").slice(0,4);
-    const othernews  = news.filter(blog => blog.category === "Άλλα").slice(0,4);
+    // const latestNews = news.sort(function(a,b){
+    //     // Turn your strings into dates, and then subtract them
+    //     // to get a value that is either negative, positive, or zero.
+    //     return Number(b.id) - Number(a.id);
+    //   }).slice(0,4);
+    // const footballnews  = news.filter(blog => blog.category === "Ποδόσφαιρο").slice(0,4);
+    // const basketballnews  = news.filter(blog => blog.category === "Καλαθοσφαίριση").slice(0,4);
+    // const othernews  = news.filter(blog => blog.category === "Άλλα").slice(0,4);
     
     return (
         <Container>
