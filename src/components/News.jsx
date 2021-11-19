@@ -60,7 +60,7 @@ const News = () => {
     // });
 
     useEffect(() => {
-        fetch(`http://localhost:7071/api/GetLatestNews`,{method: "GET"})
+        fetch(`/api/GetLatestNews`,{method: "GET"})
         .then(res => {
             console.log(res);
             if(!res.ok){
@@ -76,7 +76,7 @@ const News = () => {
           console.log("yolo",err);
         })
          
-        fetch(`http://localhost:7071/api/GetFootballNews`,{method: "GET"})
+        fetch(`/api/GetFootballNews`,{method: "GET"})
         .then(res => {
             console.log(res);
             if(!res.ok){
@@ -92,7 +92,7 @@ const News = () => {
           console.log("yolo",err);
         })
          
-        fetch(`http://localhost:7071/api/GetBasketballNews`,{method: "GET"})
+        fetch(`/api/GetBasketballNews`,{method: "GET"})
         .then(res => {
             console.log(res);
             if(!res.ok){
@@ -108,7 +108,7 @@ const News = () => {
           console.log("yolo",err);
         })
          
-        fetch(`http://localhost:7071/api/GetOtherNews`,{method: "GET"})
+        fetch(`/api/GetOtherNews`,{method: "GET"})
         .then(res => {
             console.log(res);
             if(!res.ok){

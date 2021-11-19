@@ -70,7 +70,7 @@ const Carousel = () => {
       })
     const [news, setNews] = useState([]);
 
-    const url = `http://localhost:7071/api/GetCarousel`;
+    const url = `/api/GetCarousel`;
     useEffect(() => {
         fetch(url,{method: "GET"})
         .then(res => {
