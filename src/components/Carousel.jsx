@@ -105,7 +105,7 @@ const Carousel = () => {
     }
         window.addEventListener('resize', handleResize)
     }, [url]);
-    window.addEventListener("resize", console.log('yolo'))
+    // window.addEventListener("resize", console.log('yolo'))
     let settings = {
         dots: true,
         infinite: true,

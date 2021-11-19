@@ -60,7 +60,7 @@ const News = () => {
     // });
 
     useEffect(() => {
-        fetch(`http://localhost:7071/api/GetLatestArticles`,{method: "GET"})
+        fetch(`http://localhost:7071/api/GetLatestNews`,{method: "GET"})
         .then(res => {
             console.log(res);
             if(!res.ok){
@@ -70,14 +70,13 @@ const News = () => {
         })
         .then(data =>{
             console.log("lolo",data);
-            setLatestNews(data.slice(0,20));
+            setLatestNews(data);
         })
         .catch(err =>{
           console.log("yolo",err);
         })
-
-        
-        fetch(`http://localhost:7071/api/GetFootballArticles`,{method: "GET"})
+         
+        fetch(`http://localhost:7071/api/GetFootballNews`,{method: "GET"})
         .then(res => {
             console.log(res);
             if(!res.ok){
@@ -87,14 +86,13 @@ const News = () => {
         })
         .then(data =>{
             console.log("lolo",data);
-            setFootballnews(data.slice(0,20));
+            setFootballnews(data);
         })
         .catch(err =>{
           console.log("yolo",err);
         })
-
-        
-        fetch(`http://localhost:7071/api/GetBasketballArticles`,{method: "GET"})
+         
+        fetch(`http://localhost:7071/api/GetBasketballNews`,{method: "GET"})
         .then(res => {
             console.log(res);
             if(!res.ok){
@@ -104,14 +102,13 @@ const News = () => {
         })
         .then(data =>{
             console.log("lolo",data);
-            setBasketballnews(data.slice(0,20));
+            setBasketballnews(data);
         })
         .catch(err =>{
           console.log("yolo",err);
         })
-
-        
-        fetch(`http://localhost:7071/api/GetOtherArticles`,{method: "GET"})
+         
+        fetch(`http://localhost:7071/api/GetOtherNews`,{method: "GET"})
         .then(res => {
             console.log(res);
             if(!res.ok){
@@ -121,12 +118,12 @@ const News = () => {
         })
         .then(data =>{
             console.log("lolo",data);
-            setOthernews(data.slice(0,20));
+            setOthernews(data);
         })
         .catch(err =>{
           console.log("yolo",err);
         })
-    }, [latestNews, footballnews, basketballnews, othernews]);
+    }, []);
 
     // const news = data;
     // console.log(news);
