@@ -104,7 +104,7 @@ const Carousel = () => {
         console.log(dimensions)
     }
         window.addEventListener('resize', handleResize)
-    }, [url]);
+    }, [dimensions, url]);
     // window.addEventListener("resize", console.log('yolo'))
     let settings = {
         dots: true,
