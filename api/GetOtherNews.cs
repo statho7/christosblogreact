@@ -22,7 +22,7 @@ namespace ChristosBlog
                 databaseName: "ChristosBlog",
                 collectionName: "Articles",
                 ConnectionStringSetting = "CosmosConnection",
-                SqlQuery ="SELECT TOP 5 c.id FROM c WHERE c.Category = 'Άλλα' ORDER BY c.Date DESC")] IEnumerable<Article> articles,
+                SqlQuery ="SELECT TOP 4 * FROM c WHERE c.Category = 'Άλλα' ORDER BY c.Date DESC")] IEnumerable<Article> articles,
             ILogger log)
         {
             if (articles == null)
