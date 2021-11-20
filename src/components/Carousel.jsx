@@ -17,6 +17,16 @@ const ImgSlider = styled(Slider)`
         }
     }
 
+    .slick-slide {
+        /* width: 100% !important; */
+        height: 100% !important;
+        display: flex;
+        div {
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+    }
+
     li.slick-active button:before{
         color: white;
     }
@@ -61,8 +71,25 @@ const Wrap = styled.div`
     }
 `
 
-const getWidth = () => window.innerWidth;
-
+function debounce(fn, ms) {
+    let timer
+    return _ => {
+      clearTimeout(timer)
+      timer = setTimeout(_ => {
+        timer = null
+        fn.apply(this, arguments)
+      }, ms)
+    };
+  }
+  
+let settings = {
+    dots: true,
+    infinite: true,
+    speed: 1500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true
+}
 const Carousel = () => {
     const [dimensions, setDimensions] = React.useState({ 
         height: window.innerHeight,
@@ -72,57 +99,56 @@ const Carousel = () => {
 
     const url = `http://localhost:7071/api/GetCarousel`;
     useEffect(() => {
-        fetch(url,{method: "GET"})
-        .then(res => {
-            console.log(res);
-            if(!res.ok){
-                throw Error('Could not fetch the data for that resource');
-            }
-            return res.json();
-        })
-        .then(data =>{
-            console.log("lolo",data);
-            setNews(data);
-                // dispatch(
-                //     setMovies({
-                //       movies: data
-                //     })
-                //   );
-        //   setIsPending(false);
-        //   setError(null);
-        })
-        .catch(err =>{
-          console.log("yolo",err);
-            // setError(err.message);
-            // setIsPending(false);
-        })
-        function handleResize() {
+        if (news.length === 0 ){
+            fetch(url,{method: "GET"})
+            .then(res => {
+                console.log(res);
+                if(!res.ok){
+                    throw Error('Could not fetch the data for that resource');
+                }
+                return res.json();
+            })
+            .then(data =>{
+                console.log("lolo",data);
+                setNews(data);
+                    // dispatch(
+                    //     setMovies({
+                    //       movies: data
+                    //     })
+                    //   );
+            //   setIsPending(false);
+            //   setError(null);
+            })
+            .catch(err =>{
+            console.log("yolo",err);
+                // setError(err.message);
+                // setIsPending(false);
+            })
+        }
+        
+        const debouncedHandleResize = debounce(function handleResize() {
           setDimensions({
             height: window.innerHeight,
             width: window.innerWidth
           })
-        console.log(dimensions)
-    }
-        window.addEventListener('resize', handleResize)
-    }, [dimensions, url]);
+          if (dimensions.width > 1000) {
+              settings.slidesToShow = 3;
+          } else if (dimensions.width > 600) {
+              settings.slidesToShow = 2;
+          } else {
+              settings.slidesToShow = 1;
+          }
+        console.log(dimensions.width)
+    }, 500)
+        window.addEventListener('resize', debouncedHandleResize)
+        return _ => {
+            window.removeEventListener('resize', debouncedHandleResize)
+          
+      }
+    }, [dimensions, url, news]);
     // window.addEventListener("resize", console.log('yolo'))
-    let settings = {
-        dots: true,
-        infinite: true,
-        speed: 1500,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: true
-    }
 
-    console.log(news);
-    if (getWidth() > 1000) {
-        settings.slidesToShow = 3;
-    } else if (getWidth() > 600) {
-        settings.slidesToShow = 2;
-    } else {
-        settings.slidesToShow = 1;
-    }
+    // console.log(news);
 
     return (
         <ImgSlider {...settings}>
