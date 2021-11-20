@@ -97,7 +97,7 @@ const Carousel = () => {
       })
     const [news, setNews] = useState([]);
 
-    const url = `http://localhost:7071/api/GetCarousel`;
+    const url = `/api/GetCarousel`;
     useEffect(() => {
         if (news.length === 0 ){
             fetch(url,{method: "GET"})
@@ -111,18 +111,9 @@ const Carousel = () => {
             .then(data =>{
                 console.log("lolo",data);
                 setNews(data);
-                    // dispatch(
-                    //     setMovies({
-                    //       movies: data
-                    //     })
-                    //   );
-            //   setIsPending(false);
-            //   setError(null);
             })
             .catch(err =>{
             console.log("yolo",err);
-                // setError(err.message);
-                // setIsPending(false);
             })
         }
         
