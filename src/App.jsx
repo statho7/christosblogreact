@@ -2,6 +2,7 @@ import './App.css';
 import Home from './components/Home';
 import Navbar from './components/Navbar';
 import Article from './components/Article';
+import Category from './components/Category';
 import {
   BrowserRouter as Router,
   Switch,
@@ -20,6 +21,9 @@ const App = () => {
         </Route>
         <Route exact path="/article/:title">
           <Article />
+        </Route>
+        <Route exact path="/category/:name">
+          <Category />
         </Route>
       </Switch>
       <Footer />
