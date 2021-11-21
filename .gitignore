@@ -264,4 +264,4 @@ __pycache__/
 *.pyc
 
 package-lock.json
-/src/links.json
+links.json
