@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import styled from 'styled-components'
 // import { selectNews } from '../redux/newsRedux'
 import { useEffect, useState } from "react";
+import link from '../links.json'
 
 const Container = styled.div`
     padding-bottom: 45px;
@@ -93,7 +94,7 @@ const News = () => {
     // });
 
     useEffect(() => {
-        fetch(`http://localhost:7071/api/GetLatestNews`,{method: "GET"})
+        fetch(link.link + `/api/GetLatestNews`,{method: "GET"})
         .then(res => {
             console.log(res);
             if(!res.ok){
@@ -109,7 +110,7 @@ const News = () => {
           console.log("yolo",err);
         })
          
-        fetch(`http://localhost:7071/api/GetFootballNews`,{method: "GET"})
+        fetch(link.link + `/api/GetFootballNews`,{method: "GET"})
         .then(res => {
             console.log(res);
             if(!res.ok){
@@ -125,7 +126,7 @@ const News = () => {
           console.log("yolo",err);
         })
          
-        fetch(`http://localhost:7071/api/GetBasketballNews`,{method: "GET"})
+        fetch(link.link + `/api/GetBasketballNews`,{method: "GET"})
         .then(res => {
             console.log(res);
             if(!res.ok){
@@ -141,7 +142,7 @@ const News = () => {
           console.log("yolo",err);
         })
          
-        fetch(`http://localhost:7071/api/GetOtherNews`,{method: "GET"})
+        fetch(link.link + `/api/GetOtherNews`,{method: "GET"})
         .then(res => {
             console.log(res);
             if(!res.ok){

@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useState, useEffect } from 'react';
+import link from '../links.json'
 
 const ImgSlider = styled(Slider)`
     margin-top: 20px;
@@ -97,7 +98,8 @@ const Carousel = () => {
       })
     const [news, setNews] = useState([]);
 
-    const url = `http://localhost:7071/api/GetCarousel`;
+    console.log(link)
+    const url = link.link + `/api/GetCarousel`;
     useEffect(() => {
         if (news.length === 0 ){
             fetch(url,{method: "GET"})
