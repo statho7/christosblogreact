@@ -14,7 +14,7 @@ const Container = styled.div`
     /* background: radial-gradient(#746bd8, #182147); */
     /* background: linear-gradient(#e66465, #9198e5); */
     
-    @media (max-width: 400px) {
+    @media (max-width: 500px) {
         h4 {
             display: flex;
             justify-content: center;
@@ -35,7 +35,7 @@ const Content = styled.div`
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
     
-    @media (max-width: 450px) {
+    @media (max-width: 500px) {
         grid-template-columns: repeat(1, minmax(0, 1fr));
     }
 `
@@ -43,8 +43,8 @@ const Content = styled.div`
 const Wrap = styled.div`
     min-height: 100px;
     min-width: 100px;
-    max-height: 14vh;
-    max-width: 20vh;
+    max-height: 20vh;
+    max-width: 36vh;
     border-radius: 10px;
     cursor: pointer;
     overflow: hidden;
@@ -54,13 +54,60 @@ const Wrap = styled.div`
         transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
 
 
+    .contain {
+        position: relative;
+        /* padding: 25px; */
+    }
+
+    .overlay {
+        border-radius: 10px;
+        position: absolute;
+        top:0;
+        bottom: 0;
+        left: 0;
+        /* right: 5%; */
+        background-color: rgba(50,50,50,0.75);
+        overflow: hidden;
+        /* border: 3px solid rgb(249, 249, 249, 0.8); */
+        /* margin: 0px !important; */
+        /* width: 100%;
+        height: 100%; */
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        -webkit-transform: scale(0);
+        -ms-transform: scale(0);
+        transform: scale(0);
+        -webkit-transition: 0.7s ease;
+        transition: 0.7s ease;
+    }
+
+    .contain:hover .overlay {
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+
+    .text {
+        color: white;
+        font-size: 15px;
+        font-weight: 400;
+        position: absolute;
+        top: 30%;
+        left: 20%;
+        -webkit-transform: translate(-10%, -30%);
+        -ms-transform: translate(-10%, -30%);
+        transform: translate(-10%, -30%);
+        text-align: center;
+    }
+
     
     @media (max-width: 600px) {
         max-height: 16vh;
         max-width: 22vh;
     }
     
-    @media (max-width: 400px) {
+    @media (max-width: 500px) {
         max-height: 20vh;
         max-width: 30vh;
         margin-right: auto;
@@ -71,6 +118,7 @@ const Wrap = styled.div`
         width: 100%;
         height: 100%;
         object-fit: cover;
+        align-items: center;
     }
 
     &:hover {
@@ -178,7 +226,12 @@ const News = () => {
                 latestNews.map((blog) =>(
                     <Wrap key={blog.id}>
                         <Link to={`/detail/` + blog.id}>
-                            <img src={blog.imgLink} alt={blog.title} />
+                            <div className="contain">
+                                <img src={blog.imgLink} alt={blog.title} />
+                                <div className="overlay">
+                                    <a className="text">{blog.title.slice(0,80)} ...</a>
+                                </div>
+                            </div>
                         </Link>
                     </Wrap>
                 ))}
@@ -189,7 +242,12 @@ const News = () => {
                 footballnews.map((footballblog) =>(
                     <Wrap key={footballblog.id}>
                         <Link to={`/detail/` + footballblog.id}>
-                            <img src={footballblog.imgLink} alt={footballblog.title} />
+                            <div className="contain">
+                                <img src={footballblog.imgLink} alt={footballblog.title} />
+                                <div className="overlay">
+                                    <a className="text">{footballblog.title.slice(0,80)} ...</a>
+                                </div>
+                            </div>
                         </Link>
                     </Wrap>
                 ))}
@@ -200,7 +258,12 @@ const News = () => {
                 basketballnews.map((basketballblog) =>(
                     <Wrap key={basketballblog.id}>
                         <Link to={`/detail/` + basketballblog.id}>
-                            <img src={basketballblog.imgLink} alt={basketballblog.title} />
+                            <div className="contain">
+                                <img src={basketballblog.imgLink} alt={basketballblog.title} />
+                                <div className="overlay">
+                                    <a className="text">{basketballblog.title.slice(0,80)} ...</a>
+                                </div>
+                            </div>
                         </Link>
                     </Wrap>
                 ))}
@@ -211,7 +274,12 @@ const News = () => {
                 othernews.map((otherblog) =>(
                     <Wrap key={otherblog.id}>
                         <Link to={`/detail/` + otherblog.id}>
-                            <img src={otherblog.imgLink} alt={otherblog.title} />
+                            <div className="contain">
+                                <img src={otherblog.imgLink} alt={otherblog.title} />
+                                <div className="overlay">
+                                    <a className="text">{otherblog.title.slice(0,80)} ...</a>
+                                </div>
+                            </div>
                         </Link>
                     </Wrap>
                 ))}

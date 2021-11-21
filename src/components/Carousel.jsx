@@ -48,7 +48,55 @@ const ImgSlider = styled(Slider)`
 
 const Wrap = styled.div`
     cursor: pointer;
-        padding-right: 25px;
+    padding-right: 25px;
+
+
+    .contain {
+        position: relative;
+        /* padding: 25px; */
+    }
+
+    .overlay {
+        border-radius: 55px;
+        position: absolute;
+        top:0;
+        bottom: 0;
+        left: 0;
+        /* right: 5%; */
+        background-color: rgba(50,50,50,0.75);
+        overflow: hidden;
+        border: 4px solid rgb(249, 249, 249, 0.8);
+        /* margin: 0px !important; */
+        width: 95%;
+        height: 100%;
+        min-height: 100px;
+        max-width: 360px;
+        max-height: 220px;
+        -webkit-transform: scale(0);
+        -ms-transform: scale(0);
+        transform: scale(0);
+        -webkit-transition: 0.7s ease;
+        transition: 0.7s ease;
+    }
+
+    .contain:hover .overlay {
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+
+    .text {
+        color: white;
+        font-size: 15px;
+        font-weight: 400;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
 
     img {
         border: 4px solid transparent;
@@ -66,9 +114,9 @@ const Wrap = styled.div`
         rgb(0 0 0 / 73%) 0px 16px 10px -10px;
         transition-duration: 300ms;
 
-        &:hover {
+        /* &:hover {
             border: 4px solid rgb(249, 249, 249, 0.8);
-        }
+        } */
     }
 `
 
@@ -89,7 +137,7 @@ let settings = {
     speed: 1500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    autoplay: true
+    autoplay: false
 }
 const Carousel = () => {
     const [dimensions, setDimensions] = React.useState({ 
@@ -98,20 +146,20 @@ const Carousel = () => {
       })
     const [news, setNews] = useState([]);
 
-    console.log(link)
+    // console.log(link)
     const url = link.link + `/api/GetCarousel`;
     useEffect(() => {
         if (news.length === 0 ){
             fetch(url,{method: "GET"})
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 if(!res.ok){
                     throw Error('Could not fetch the data for that resource');
                 }
                 return res.json();
             })
             .then(data =>{
-                console.log("lolo",data);
+                // console.log("lolo",data);
                 setNews(data);
                     // dispatch(
                     //     setMovies({
@@ -158,7 +206,12 @@ const Carousel = () => {
             {news &&
                 news.map((blog) =>(
                 <Wrap>
-                    <img src={blog.imgLink}/>
+                    <div className="contain">
+                        <img src={blog.imgLink}/>
+                        <div className="overlay">
+                            <a className="text">{blog.title}</a>
+                        </div>
+                    </div>
                 </Wrap>
 
                 ))}
