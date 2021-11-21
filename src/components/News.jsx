@@ -31,11 +31,11 @@ const Content = styled.div`
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
     
-    @media (max-width: 600px) {
+    @media (max-width: 800px) {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
     
-    @media (max-width: 400px) {
+    @media (max-width: 450px) {
         grid-template-columns: repeat(1, minmax(0, 1fr));
     }
 `
@@ -96,14 +96,14 @@ const News = () => {
     useEffect(() => {
         fetch(link.link + `/api/GetLatestNews`,{method: "GET"})
         .then(res => {
-            console.log(res);
+            // console.log(res);
             if(!res.ok){
                 throw Error('Could not fetch the data for that resource');
             }
             return res.json();
         })
         .then(data =>{
-            console.log("lolo",data);
+            // console.log("lolo",data);
             setLatestNews(data);
         })
         .catch(err =>{
@@ -112,14 +112,14 @@ const News = () => {
          
         fetch(link.link + `/api/GetFootballNews`,{method: "GET"})
         .then(res => {
-            console.log(res);
+            // console.log(res);
             if(!res.ok){
                 throw Error('Could not fetch the data for that resource');
             }
             return res.json();
         })
         .then(data =>{
-            console.log("lolo",data);
+            // console.log("lolo",data);
             setFootballnews(data);
         })
         .catch(err =>{
@@ -128,14 +128,14 @@ const News = () => {
          
         fetch(link.link + `/api/GetBasketballNews`,{method: "GET"})
         .then(res => {
-            console.log(res);
+            // console.log(res);
             if(!res.ok){
                 throw Error('Could not fetch the data for that resource');
             }
             return res.json();
         })
         .then(data =>{
-            console.log("lolo",data);
+            // console.log("lolo",data);
             setBasketballnews(data);
         })
         .catch(err =>{
@@ -144,14 +144,14 @@ const News = () => {
          
         fetch(link.link + `/api/GetOtherNews`,{method: "GET"})
         .then(res => {
-            console.log(res);
+            // console.log(res);
             if(!res.ok){
                 throw Error('Could not fetch the data for that resource');
             }
             return res.json();
         })
         .then(data =>{
-            console.log("lolo",data);
+            // console.log("lolo",data);
             setOthernews(data);
         })
         .catch(err =>{
