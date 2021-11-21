@@ -98,7 +98,8 @@ const Carousel = () => {
       })
     const [news, setNews] = useState([]);
 
-    const url = link + `/api/GetCarousel`;
+    console.log(link)
+    const url = link.link + `/api/GetCarousel`;
     useEffect(() => {
         if (news.length === 0 ){
             fetch(url,{method: "GET"})
@@ -126,6 +127,7 @@ const Carousel = () => {
           if (dimensions.width > 1000) {
               settings.slidesToShow = 3;
           } else if (dimensions.width > 600) {
+              console.log('2')
               settings.slidesToShow = 2;
           } else {
               settings.slidesToShow = 1;
