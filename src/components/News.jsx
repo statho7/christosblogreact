@@ -27,15 +27,15 @@ const Content = styled.div`
     grid-gap: 25px;
     grid-template-columns: repeat(4, minmax(0, 1fr));
 
-    @media (max-width: 1000px) {
+    @media (max-width: 1150px) {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
     
-    @media (max-width: 800px) {
+    @media (max-width: 900px) {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
     
-    @media (max-width: 500px) {
+    @media (max-width: 600px) {
         grid-template-columns: repeat(1, minmax(0, 1fr));
     }
 `
@@ -93,23 +93,23 @@ const Wrap = styled.div`
         font-size: 15px;
         font-weight: 400;
         position: absolute;
-        top: 30%;
+        top: 40%;
         left: 20%;
-        -webkit-transform: translate(-10%, -30%);
-        -ms-transform: translate(-10%, -30%);
-        transform: translate(-10%, -30%);
+        -webkit-transform: translate(-10%, -50%);
+        -ms-transform: translate(-10%, -50%);
+        transform: translate(-10%, -50%);
         text-align: center;
     }
 
     
-    @media (max-width: 600px) {
+    /* @media (max-width: 600px) {
         max-height: 16vh;
         max-width: 22vh;
-    }
+    } */
     
-    @media (max-width: 500px) {
-        max-height: 20vh;
-        max-width: 30vh;
+    @media (max-width: 600px) {
+        /* max-height: 20vh;
+        max-width: 30vh; */
         margin-right: auto;
         margin-left: auto;
     }
@@ -229,7 +229,7 @@ const News = () => {
                             <div className="contain">
                                 <img src={blog.imgLink} alt={blog.title} />
                                 <div className="overlay">
-                                    <a className="text">{blog.title.slice(0,80)} ...</a>
+                                    <div className="text">{blog.title.slice(0,80)} ...</div>
                                 </div>
                             </div>
                         </Link>
@@ -245,7 +245,7 @@ const News = () => {
                             <div className="contain">
                                 <img src={footballblog.imgLink} alt={footballblog.title} />
                                 <div className="overlay">
-                                    <a className="text">{footballblog.title.slice(0,80)} ...</a>
+                                    <div className="text">{footballblog.title.slice(0,80)} ...</div>
                                 </div>
                             </div>
                         </Link>
@@ -261,7 +261,7 @@ const News = () => {
                             <div className="contain">
                                 <img src={basketballblog.imgLink} alt={basketballblog.title} />
                                 <div className="overlay">
-                                    <a className="text">{basketballblog.title.slice(0,80)} ...</a>
+                                    <div className="text">{basketballblog.title.slice(0,80)} ...</div>
                                 </div>
                             </div>
                         </Link>
@@ -277,7 +277,7 @@ const News = () => {
                             <div className="contain">
                                 <img src={otherblog.imgLink} alt={otherblog.title} />
                                 <div className="overlay">
-                                    <a className="text">{otherblog.title.slice(0,80)} ...</a>
+                                    <div className="text">{otherblog.title.slice(0,80)} ...</div>
                                 </div>
                             </div>
                         </Link>

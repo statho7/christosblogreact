@@ -200,7 +200,7 @@ const Carousel = () => {
                     <div className="contain">
                         <img src={blog.imgLink}/>
                         <div className="overlay">
-                            <a className="text">{blog.title}</a>
+                            <div className="text">{blog.title}</div>
                         </div>
                     </div>
                 </Wrap>
