@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import styled from 'styled-components'
 // import { selectNews } from '../redux/newsRedux'
 import { useEffect, useState } from "react";
+import link from '../links.json'
+
 
 const Container = styled.div`
     padding-bottom: 45px;
@@ -60,7 +62,7 @@ const News = () => {
     // });
 
     useEffect(() => {
-        fetch(`/api/GetLatestNews`,{method: "GET"})
+        fetch(link + `/api/GetLatestNews`,{method: "GET"})
         .then(res => {
             console.log(res);
             if(!res.ok){
