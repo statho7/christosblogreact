@@ -7,7 +7,7 @@ const Container = styled.div`
     margin-left: 10vw;
     display: grid;
     padding: 30px 0px 26px;
-    grid-gap: 40vw;
+    grid-gap: 35vw;
     grid-template-columns: repeat(2, minmax(0, 1fr));
 
     @media only screen and (max-width: 500px) {

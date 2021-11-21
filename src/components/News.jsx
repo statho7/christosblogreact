@@ -225,7 +225,7 @@ const News = () => {
                 {latestNews &&
                 latestNews.map((blog) =>(
                     <Wrap key={blog.id}>
-                        <Link to={`/detail/` + blog.id}>
+                        <Link to={`/article/` + blog.id}>
                             <div className="contain">
                                 <img src={blog.imgLink} alt={blog.title} />
                                 <div className="overlay">
@@ -241,7 +241,7 @@ const News = () => {
                 {footballnews &&
                 footballnews.map((footballblog) =>(
                     <Wrap key={footballblog.id}>
-                        <Link to={`/detail/` + footballblog.id}>
+                        <Link to={`/article/` + footballblog.id}>
                             <div className="contain">
                                 <img src={footballblog.imgLink} alt={footballblog.title} />
                                 <div className="overlay">
@@ -257,7 +257,7 @@ const News = () => {
                 {basketballnews &&
                 basketballnews.map((basketballblog) =>(
                     <Wrap key={basketballblog.id}>
-                        <Link to={`/detail/` + basketballblog.id}>
+                        <Link to={`/article/` + basketballblog.id}>
                             <div className="contain">
                                 <img src={basketballblog.imgLink} alt={basketballblog.title} />
                                 <div className="overlay">
@@ -273,7 +273,7 @@ const News = () => {
                 {othernews &&
                 othernews.map((otherblog) =>(
                     <Wrap key={otherblog.id}>
-                        <Link to={`/detail/` + otherblog.id}>
+                        <Link to={`/article/` + otherblog.id}>
                             <div className="contain">
                                 <img src={otherblog.imgLink} alt={otherblog.title} />
                                 <div className="overlay">

@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useState, useEffect } from 'react';
 import link from '../links.json'
+import { Link } from "react-router-dom";
 
 const ImgSlider = styled(Slider)`
     margin-top: 20px;
@@ -134,10 +135,10 @@ function debounce(fn, ms) {
 let settings = {
     dots: true,
     infinite: true,
-    speed: 1500,
+    speed: 2000,
     slidesToShow: 3,
     slidesToScroll: 1,
-    autoplay: false
+    autoplay: true
 }
 const Carousel = () => {
     const [dimensions, setDimensions] = React.useState({ 
@@ -196,37 +197,18 @@ const Carousel = () => {
         <ImgSlider {...settings}>
             {news &&
                 news.map((blog) =>(
-                <Wrap>
-                    <div className="contain">
-                        <img src={blog.imgLink}/>
-                        <div className="overlay">
-                            <div className="text">{blog.title}</div>
+                <Wrap key={blog.id}>
+                    <Link to={`/article/` + blog.id}>
+                        <div className="contain">
+                            <img src={blog.imgLink}/>
+                            <div className="overlay">
+                                <div className="text">{blog.title}</div>
+                            </div>
                         </div>
-                    </div>
+                    </Link>
                 </Wrap>
 
                 ))}
-            {/* <Wrap>
-                <img src="/images/viewers-marvel.png"/>
-            </Wrap>
-            <Wrap>
-                <img src="/images/viewers-pixar.png"/>
-            </Wrap>
-            <Wrap>
-                <img src="/images/viewers-national.png"/>
-            </Wrap>
-            <Wrap>
-                <img src="/images/viewers-disney.png"/>
-            </Wrap>
-            <Wrap>
-                <img src="/images/viewers-marvel.png"/>
-            </Wrap>
-            <Wrap>
-                <img src="/images/viewers-pixar.png"/>
-            </Wrap>
-            <Wrap>
-                <img src="/images/viewers-national.png"/>
-            </Wrap> */}
         </ImgSlider>
     )
 }
