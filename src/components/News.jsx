@@ -12,19 +12,38 @@ const Container = styled.div`
     /* background-image: radial-gradient(circle, #182147, white , #182147); */
     /* background: radial-gradient(#746bd8, #182147); */
     /* background: linear-gradient(#e66465, #9198e5); */
+    
+    @media (max-width: 400px) {
+        h4 {
+            display: flex;
+            justify-content: center;
+        }
+    }
 `
 
 const Content = styled.div`
     display: grid;
     grid-gap: 25px;
     grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    @media (max-width: 1000px) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    
+    @media (max-width: 600px) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    
+    @media (max-width: 400px) {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
 `
 
 const Wrap = styled.div`
     min-height: 100px;
     min-width: 100px;
-    max-height: 12vh;
-    max-width: 17vh;
+    max-height: 14vh;
+    max-width: 20vh;
     border-radius: 10px;
     cursor: pointer;
     overflow: hidden;
@@ -32,6 +51,20 @@ const Wrap = styled.div`
     box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px, 
         rgb(0 0 0 / 73%) 0px 16px 10px -10px;
         transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+
+
+    
+    @media (max-width: 600px) {
+        max-height: 16vh;
+        max-width: 22vh;
+    }
+    
+    @media (max-width: 400px) {
+        max-height: 20vh;
+        max-width: 30vh;
+        margin-right: auto;
+        margin-left: auto;
+    }
         
     img {
         width: 100%;
