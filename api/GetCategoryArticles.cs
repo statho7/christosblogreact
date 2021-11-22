@@ -13,16 +13,16 @@ using System.Threading.Tasks;
 
 namespace ChristosBlog
 {
-    public static class GetAuthorArticles
+    public static class GetCategoryArticles
     {
-        [FunctionName("GetAuthorArticles")]
+        [FunctionName("GetCategoryArticles")]
        public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "GetAuthorArticles/{name}")] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "GetCategoryArticles/{name}")] HttpRequest req,
             [CosmosDB(
                 databaseName: "ChristosBlog",
                 collectionName: "Articles",
                 ConnectionStringSetting = "CosmosConnection",
-                SqlQuery ="SELECT TOP 20 c.id, c.Title, c.ImgLink FROM c WHERE CONTAINS(c.Author,{name}) ORDER BY c.Date DESC")] IEnumerable<Article> articles,
+                SqlQuery ="SELECT TOP 20 c.id, c.Title, c.ImgLink, c.Category FROM c WHERE c.Category = {name} ORDER BY c.Date DESC")] IEnumerable<Article> articles,
             ILogger log)
         {
             if (articles == null)

@@ -107,20 +107,26 @@ const Navbar = () => {
                         <span>Αναζήτηση</span>
                     </a>
 
-                    <a>
-                        <img src="/images/soccer.png" />
-                        <span>Ποδόσφαιρο</span>
-                    </a>
+                    <Link to="/category/Ποδόσφαιρο">
+                        <a>
+                            <img src="/images/soccer.png" />
+                            <span>Ποδόσφαιρο</span>
+                        </a>
+                    </Link>
 
-                    <a>
-                        <img src="/images/basketball.png" />
-                        <span>Καλαθοσφαίριση</span>
-                    </a>
+                    <Link to="/category/Καλαθοσφαίριση">
+                        <a>
+                            <img src="/images/basketball.png" />
+                            <span>Καλαθοσφαίριση</span>
+                        </a>
+                    </Link>
 
-                    <a>
-                        <img src="/images/watchlist-icon.svg" />
-                        <span>Άλλα</span>
-                    </a>
+                    <Link to="/category/Άλλα">
+                        <a>
+                            <img src="/images/watchlist-icon.svg" />
+                            <span>Άλλα</span>
+                        </a>
+                    </Link>
                 </Wrap>
             </NavMenu>
             {/* <UserImg src="https://media-exp1.licdn.com/dms/image/C4D03AQEAvFhaBxi-eQ/profile-displayphoto-shrink_200_200/0/1603974130110?e=1642032000&v=beta&t=0KdEqQPmlpTPcPOEf1S1EPKX-fabr_mWuqdCJO0BvSY" /> */}
