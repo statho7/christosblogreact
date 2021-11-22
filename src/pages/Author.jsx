@@ -24,6 +24,7 @@ const Content = styled.div`
     display: grid;
     grid-gap: 25px;
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    justify-content: space-center;
 
     @media (max-width: 1150px) {
         grid-template-columns: repeat(3, minmax(0, 1fr));

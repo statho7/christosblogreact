@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Azure Deployment
 
-This website was deployed on Azure Blob Storage and the link is : https://mango-coast-0ce694803.azurestaticapps.net/
+This website was deployed on Azure Static Web Apps and the link is : https://mango-coast-0ce694803.azurestaticapps.net/
 
 ## Available Scripts
 

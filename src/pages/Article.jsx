@@ -11,7 +11,7 @@ const Container = styled.div`
     overflow-x: hidden;
     display: block;
     margin-top: 5vh;
-    padding: 0 calc(3.5vw + 5px);
+    padding: 0 calc(8.5vw + 5px);
     background: radial-gradient(#7168d6, #182147);
 `;
 
@@ -33,7 +33,7 @@ const ImageTitle = styled.div`
 
 const Content = styled.div`
     margin: 0px auto;
-    line-height: 1.8;
+    line-height: 1.15;
     padding: 0 25px;
 
     p {
