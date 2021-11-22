@@ -68,7 +68,7 @@ const Wrap = styled.div`
         overflow: hidden;
         border: 4px solid rgb(249, 249, 249, 0.8);
         /* margin: 0px !important; */
-        width: 95%;
+        width: 94%;
         height: 100%;
         min-height: 100px;
         max-width: 360px;
@@ -100,7 +100,7 @@ const Wrap = styled.div`
     }
 
     img {
-        border: 4px solid transparent;
+        /* border: 4px solid transparent; */
         /* border: 0.25px solid rgb(249, 249, 249, 0.1); */
         border-radius: 55px;
         /* margin: 10px; */
