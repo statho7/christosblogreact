@@ -1,8 +1,8 @@
 import './App.css';
-import Home from './components/Home';
+import Home from './pages/Home';
 import Navbar from './components/Navbar';
-import Article from './components/Article';
-import Category from './components/Category';
+import Article from './pages/Article';
+import Category from './pages/Category';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,6 +10,7 @@ import {
   // Redirect,
 } from "react-router-dom";
 import Footer from './components/Footer';
+import Author from './pages/Author';
 
 const App = () => {
   return (
@@ -21,6 +22,9 @@ const App = () => {
         </Route>
         <Route path="/article/:id">
           <Article />
+        </Route>
+        <Route path="/author/:name">
+          <Author />
         </Route>
         <Route path="/category/:name">
           <Category />

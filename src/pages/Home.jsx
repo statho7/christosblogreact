@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import Authors from './Authors'
-import Carousel from './Carousel'
-import News from './News'
+import Authors from '../components/Authors'
+import Carousel from '../components/Carousel'
+import News from '../components/News'
 
 const Container = styled.main`
   position: relative;
