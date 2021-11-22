@@ -33,6 +33,12 @@ const ImageTitle = styled.div`
 
 const Content = styled.div`
     margin: 0px auto;
+    line-height: 1.8;
+    padding: 0 25px;
+
+    p {
+        justify-content: center;
+    }
 `;
 
 // const Background = styled.div`
@@ -213,6 +219,8 @@ const Article = () => {
                 <img alt={articleData.title} src={articleData.imgLink} />
             </ImageTitle>
             <Content>
+                <p>Αρθρογράφος: {articleData.author}</p>
+                <br />
                 <div dangerouslySetInnerHTML={{__html: htmlString}} />
             </Content>
             {/* <ContentMeta>

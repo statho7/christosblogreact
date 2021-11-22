@@ -132,7 +132,7 @@ const Authors = () => {
     return (
         <Container>
             <Wrap>
-                <Link to={`/authors/christos/`}>
+                <Link to={`/author/Χρήστος/`}>
                     <div className="contain">
                         <img src="/images/christos.jpg" />
                             <div className="overlay">
@@ -142,7 +142,7 @@ const Authors = () => {
                 </Link>
             </Wrap>
             <Wrap>
-                <Link to={`/authors/giorgos/`}>
+                <Link to={`/author/Γιώργος/`}>
                     <div className="contain">
                         <img src="/images/giorgos.jpg" />  
                             <div className="overlay">

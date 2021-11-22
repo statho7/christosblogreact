@@ -3,8 +3,12 @@ import styled from 'styled-components'
 
 const Container = styled.div`
     width: 100%;
-    padding-top: 62px;
+    margin-top: 70px;
 
+    footer {
+        padding: 0px 5px;
+    }
+    
     a{
         color: #a3b3c0;
     }
@@ -13,7 +17,7 @@ const Container = styled.div`
 const Footer = () => {
     return (
         <Container>
-          <hr />
+          {/* <hr /> */}
           <footer>
             <p>©Christos Zafeiropoulos - 2021 - Developed and designed by <a href="https://www.stathopoulosandreas.com" rel="noreferrer" target="_blank">Andreas Stathopoulos</a></p>
           </footer>

@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import link from '../links.json'
 
 const Container = styled.div`
-    padding-bottom: 45px;
+    margin-bottom: 45px;
     /* background: linear-gradient(to right, #182147 , white, #182147 ); */
     /* background: linear-gradient(to right, #182147 10%, white 50%, #182147 ); */
     /* background-image: radial-gradient(circle, #182147, white , #182147); */

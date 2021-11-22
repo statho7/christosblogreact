@@ -6,178 +6,136 @@ import link from '../links.json'
 import { Link } from "react-router-dom"
 
 const Container = styled.div`
-    position: relative;
-    min-height: calc(95vh - 70px);
-    overflow-x: hidden;
-    display: block;
-    margin-top: 5vh;
-    padding: 0 calc(3.5vw + 5px);
-    background: radial-gradient(#7168d6, #182147);
-`;
+    margin-bottom: 45px;
+    padding: 0px 25px;
 
-const ImageTitle = styled.div`
-    align-items: center;
-    display: flex;
-    -webkit-box-pack: start;
-    justify-content: center;
-    margin: 0px auto;
-    min-height: 170px;
-    padding-bottom: 12px;
-    width: 100%;
-    img {
-        max-width: 600px;
-        min-width: 200px;
-        width: 75vw;
+    h3 {
+            display: flex;
+            justify-content: center;
     }
-`;
+    /* background: linear-gradient(to right, #182147 , white, #182147 ); */
+    /* background: linear-gradient(to right, #182147 10%, white 50%, #182147 ); */
+    /* background-image: radial-gradient(circle, #182147, white , #182147); */
+    /* background: radial-gradient(#746bd8, #182147); */
+    /* background: linear-gradient(#e66465, #9198e5); */
+`
 
 const Content = styled.div`
-    margin: 0px auto;
-`;
+    display: grid;
+    grid-gap: 25px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 
-// const Background = styled.div`
-//     left: 0px;
-//     opacity: 0.8;
-//     position: fixed;
-//     right: 0px;
-//     top: 0px;
-//     z-index: -1;
-//     img {
-//         width: 100vw;
-//         height: 100vh;
-//         @media (max-width: 768px) {
-//             width: initial;
-//         }
-//     }
-// `;
+    @media (max-width: 1150px) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    
+    @media (max-width: 900px) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    
+    @media (max-width: 600px) {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+`
 
-// const ContentMeta = styled.div`
-//     max-width: 874px;
-// `;
+const Wrap = styled.div`
+    min-height: 100px;
+    min-width: 100px;
+    max-height: 20vh;
+    max-width: 36vh;
+    border-radius: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    border: 3px solid rgba(249, 249, 249, 0.1);
+    box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px, 
+        rgb(0 0 0 / 73%) 0px 16px 10px -10px;
+        transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
 
-// const Controls = styled.div`
-//     align-items: center;
-//     display: flex;
-//     flex-flow: row nowrap;
-//     margin: 24px 0px;
-//     min-height: 56px;
-// `;
 
-// const Player = styled.button`
-//     font-size: 15px;
-//     margin: 0px 22px 0px 0px;
-//     padding: 0px 24px;
-//     height: 56px;
-//     border-radius: 4px;
-//     cursor: pointer;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     letter-spacing: 1.8px;
-//     text-align: center;
-//     text-transform: uppercase;
-//     background: rgb (249, 249, 249);
-//     border: none;
-//     color: rgb(0, 0, 0);
-//     img {
-//     width: 32px;
-//     }
-//     &:hover {
-//     background: rgb(198, 198, 198);
-//     }
-//     @media (max-width: 768px) {
-//     height: 45px;
-//     padding: 0px 12px;
-//     font-size: 12px;
-//     margin: 0px 10px 0px 0px;
-//     img {
-//         width: 25px;
-//     }
-//     }
-// `;
+    .contain {
+        position: relative;
+        /* padding: 25px; */
+    }
 
-// const Trailer = styled(Player)`
-//     background: rgba(0, 0, 0, 0.3);
-//     border: 1px solid rgb(249, 249, 249);
-//     color: rgb(249, 249, 249);
-// `;
+    .overlay {
+        /* border-radius: 2px; */
+        position: absolute;
+        top:0;
+        bottom: 0;
+        left: 0;
+        /* right: 5%; */
+        background-color: rgba(50,50,50,0.75);
+        overflow: hidden;
+        /* border: 3px solid rgb(249, 249, 249, 0.8); */
+        /* margin: 0px !important; */
+        /* width: 100%;
+        height: 100%; */
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        -webkit-transform: scale(0);
+        -ms-transform: scale(0);
+        transform: scale(0);
+        -webkit-transition: 0.7s ease;
+        transition: 0.7s ease;
+    }
 
-// const AddList = styled.div`
-//     margin-right: 16px;
-//     height: 44px;
-//     width: 44px;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     background-color: rgba(0, 0, 0, 0.6);
-//     border-radius: 50%;
-//     border: 2px solid white;
-//     cursor: pointer;
-//     span {
-//     background-color: rgb(249, 249, 249);
-//     display: inline-block;
-//     &:first-child {
-//         height: 2px;
-//         transform: translate(1px, 0px) rotate(0deg);
-//         width: 16px;
-//     }
-//     &:nth-child(2) {
-//         height: 16px;
-//         transform: translateX(-8px) rotate(0deg);
-//         width: 2px;
-//     }
-//     }
-// `;
+    .contain:hover .overlay {
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
 
-// const GroupWatch = styled.div`
-//     height: 44px;
-//     width: 44px;
-//     border-radius: 50%;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     cursor: pointer;
-//     background: white;
-//     div {
-//         height: 40px;
-//         width: 40px;
-//         background: rgb(0, 0, 0);
-//         border-radius: 50%;
-//     img {
-//         width: 100%;
-//     }
-//     }
-// `;
+    .text {
+        color: white;
+        font-size: 15px;
+        font-weight: 400;
+        position: absolute;
+        top: 40%;
+        left: 20%;
+        -webkit-transform: translate(-10%, -50%);
+        -ms-transform: translate(-10%, -50%);
+        transform: translate(-10%, -50%);
+        text-align: center;
+    }
 
-// const SubTitle = styled.div`
-//     color: rgb(249, 249, 249);
-//     font-size: 15px;
-//     min-height: 20px;
-//     @media (max-width: 768px) {
-//     font-size: 12px;
-//     }
-// `;
+    
+    /* @media (max-width: 600px) {
+        max-height: 16vh;
+        max-width: 22vh;
+    } */
+    
+    @media (max-width: 600px) {
+        /* max-height: 20vh;
+        max-width: 30vh; */
+        margin-right: auto;
+        margin-left: auto;
+    }
+        
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        align-items: center;
+    }
 
-// const Description = styled.div`
-//     line-height: 1.4;
-//     font-size: 20px;
-//     padding: 16px 0px;
-//     color: rgb(249, 249, 249);
-//     @media (max-width: 768px) {
-//     font-size: 14px;
-//     }
-// `;
+    &:hover {
+        box-shadow: rgb(0 0 0 / 80%) 0px 40px 58px -16px, 
+            rgb(0 0 0 / 72%) 0px 30px 22px -10px;
+        transform: scale(1.05);
+        border-color: rgba(249, 249, 249, 0.8);
+    }
+`
 
 const Author = () => {
-    const { id } = useParams();
-    const [articleData, setArticleData] = useState([]);
+    const { name } = useParams();
+    const [articles, setArticles] = useState([]);
 
-    const url = link.link + `/api/GetSingleArticle/` + id;
     useEffect(() => {
-        if (articleData.length === 0 ){
+        const url = link.link + `/api/GetAuthorArticles/` + name;
+        if (articles.length === 0 ){
             fetch(url,{method: "GET"})
             .then(res => {
-                // console.log(res);
                 if(!res.ok){
                     throw Error('Could not fetch the data for that resource');
                 }
@@ -185,20 +143,33 @@ const Author = () => {
             })
             .then(data =>{
                 // console.log("lolo",data);
-                setArticleData(data[0]);
+                setArticles(data);
             })
             .catch(err =>{
             console.log("yolo",err);
             })
-        }})
+        }}, [name, articles.length]);
 
-    const htmlString = articleData.content;
 
-    
     return (
-        <div>
-            
-        </div>
+        <Container>
+            <h3>{name}</h3>
+            <Content>
+                {articles &&
+                articles.map((blog) =>(
+                    <Wrap key={blog.id}>
+                        <Link to={`/article/` + blog.id}>
+                            <div className="contain">
+                                <img src={blog.imgLink} alt={blog.title} />
+                                <div className="overlay">
+                                    <div className="text">{blog.title.slice(0,80)} ...</div>
+                                </div>
+                            </div>
+                        </Link>
+                    </Wrap>
+                ))}
+            </Content>
+        </Container>
     )
 }
 
