@@ -11,7 +11,18 @@ const Container = styled.div`
     grid-gap: 35vw;
     grid-template-columns: repeat(2, minmax(0, 1fr));
 
-    @media only screen and (max-width: 500px) {
+    @media only screen and (max-width: 1000px) {
+        margin-left: 4vw;
+        grid-gap: 30vw;
+    }
+
+    @media only screen and (max-width: 850px) {
+        margin-left: 3vw;
+        grid-gap: 15vw;
+    }
+
+    @media only screen and (max-width: 650px) {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
         margin-left: 2vw;
         grid-gap: 8vw;
     }

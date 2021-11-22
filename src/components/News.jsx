@@ -60,7 +60,7 @@ const Wrap = styled.div`
     }
 
     .overlay {
-        border-radius: 10px;
+        /* border-radius: 2px; */
         position: absolute;
         top:0;
         bottom: 0;
