@@ -114,10 +114,12 @@ const Wrap = styled.div`
     }
         
     img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        align-items: center;
+        min-height: 100px;
+        min-width: 100px;
+        max-height: 20vh;
+        max-width: 36vh;
+        display: flex;
+        margin: 0 auto;
     }
 
     &:hover {
