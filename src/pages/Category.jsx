@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import styled from 'styled-components'
 import link from '../links.json'
 import { Link } from "react-router-dom"
+import Select from 'react-select';
 
 const Container = styled.div`
     margin-bottom: 45px;
@@ -12,6 +13,16 @@ const Container = styled.div`
     h3 {
             display: flex;
             justify-content: center;
+    }
+
+    .dropdown {
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        width: 9vw;
+        min-width: 140px;
+        color: black;
+        background-color: aliceblue;
     }
     /* background: linear-gradient(to right, #182147 , white, #182147 ); */
     /* background: linear-gradient(to right, #182147 10%, white 50%, #182147 ); */
@@ -129,10 +140,20 @@ const Wrap = styled.div`
         border-color: rgba(249, 249, 249, 0.8);
     }
 `
+const subcategories = [
+    {label: 'Όλα', value: '0'},
+    {label: 'Basket League', value: '1'},
+    {label: 'Euroleague', value: '2'},
+    {label: 'Basketball Champions League', value: '3'},
+    {label: 'Mundobasket', value: '4'},
+    {label: 'Eurobasket', value: '5'}
+  ];
 
 const Category = () => {
     const { name } = useParams();
     const [articles, setArticles] = useState([]);
+    const [filteredArticles, setFilteredArticles] = useState([]);
+    const [filter, setFilter] = useState(false);
 
     useEffect(() => {
         const url = link.link + `/api/GetCategoryArticles/` + name;
@@ -153,12 +174,48 @@ const Category = () => {
             })
         }}, [name, articles]);
 
+        
+  const handleSubcategory = (event, value) => {
+        console.log(event, value, articles);
+        if (event.label === "Όλα"){
+            setFilter(false);
+            setFilteredArticles(articles);
+        } else {
+            setFilter(true);
+            setFilteredArticles(articles.filter(article=>article.subcategory === event.label));
+        }
+        // console.log(filteredArticles)
+        // if (action === "dec") {
+    //   setQuantity(quantity - 1);
+    // } else {
+    //   setQuantity(quantity + 1);
+    // }
+
+    // handleClick(action, product, quantity);
+  };
+
     return (
         <Container>
             <h3>{name}</h3>
+            <div className="dropdown">
+                <Select options={ subcategories } onChange={(event, value) => handleSubcategory(event, value)} />
+            </div>
             <Content>
-                {articles &&
+                {!filter &&
                 articles.map((blog) =>(
+                    <Wrap key={blog.id}>
+                        <Link to={`/article/` + blog.id}>
+                            <div className="contain">
+                                <img src={blog.imgLink} alt={blog.title} />
+                                <div className="overlay">
+                                    <div className="text">{blog.title.slice(0,80)} ...</div>
+                                </div>
+                            </div>
+                        </Link>
+                    </Wrap>
+                ))}
+                {filter &&
+                filteredArticles.map((blog) =>(
                     <Wrap key={blog.id}>
                         <Link to={`/article/` + blog.id}>
                             <div className="contain">
