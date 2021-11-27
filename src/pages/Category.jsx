@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import link from '../links.json'
 import { Link } from "react-router-dom"
 import Select from 'react-select';
+import { useSelector } from 'react-redux';
 
 const Container = styled.div`
     margin-bottom: 45px;
@@ -150,6 +151,7 @@ const subcategories = [
   ];
 
 const Category = () => {
+    const blogs = useSelector((state) => state.user.blogs);
     const { name } = useParams();
     const [articles, setArticles] = useState([]);
     const [filteredArticles, setFilteredArticles] = useState([]);
