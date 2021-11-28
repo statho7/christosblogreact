@@ -43,8 +43,8 @@ const Content = styled.div`
 const Wrap = styled.div`
     min-height: 100px;
     min-width: 100px;
-    max-height: 20vh;
-    max-width: 36vh;
+    max-height: 15vh;
+    max-width: 28vh;
     border-radius: 10px;
     cursor: pointer;
     overflow: hidden;
@@ -56,6 +56,8 @@ const Wrap = styled.div`
 
     .contain {
         position: relative;
+        width: 100%;
+        height: 100%;
         /* padding: 25px; */
     }
 
@@ -115,12 +117,10 @@ const Wrap = styled.div`
     }
         
     img {
-        min-height: 100px;
-        min-width: 100px;
-        max-height: 20vh;
-        max-width: 36vh;
-        display: flex;
-        margin: 0 auto;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        align-items: center;
     }
 
     &:hover {
