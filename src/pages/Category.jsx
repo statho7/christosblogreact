@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from "react-router-dom";
 import {  useState } from "react";
 import styled from 'styled-components'
 import { Link } from "react-router-dom"
 import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { getFootball, getBasketball, getOther } from '../redux/apiCalls';
-import { selectBasketball, selectFootball, selectOther } from '../redux/newsSlice';
+// import { selectBasketball, selectFootball, selectOther } from '../redux/newsSlice';
 import Footer from '../components/Footer';
 
 const Container = styled.div`
@@ -143,56 +144,101 @@ const Wrap = styled.div`
         border-color: rgba(249, 249, 249, 0.8);
     }
 `
-const subcategories = [
-    {label: 'Όλα', value: '0'},
-    {label: 'Basket League', value: '1'},
-    {label: 'Euroleague', value: '2'},
-    {label: 'Basketball Champions League', value: '3'},
-    {label: 'Mundobasket', value: '4'},
-    {label: 'Eurobasket', value: '5'}
-  ];
+
+    const subcategoriesFootball = [
+        {label: 'Όλα', value: '0'},
+        {label: 'SuperLeague 1', value: '1'},
+        {label: 'Κύπελλο Ελλάδας', value: '2'},
+        {label: 'Champions League', value: '3'},
+        {label: 'Europa League', value: '4'},
+        {label: 'Serie A', value: '5'},
+        {label: 'La Liga', value: '6'},
+        {label: 'Ligue 1', value: '7'},
+        {label: 'Premier League', value: '8'},
+        {label: 'Bundesliga', value: '9'},
+        {label: 'Mundial', value: '10'},
+        {label: 'Euro', value: '11'}
+    ];
+
+    const subcategoriesBasketball = [
+        {label: 'Όλα', value: '0'},
+        {label: 'Basket League', value: '1'},
+        {label: 'Euroleague', value: '2'},
+        {label: 'Basketball Champions League', value: '3'},
+        {label: 'Mundobasket', value: '4'},
+        {label: 'Eurobasket', value: '5'}
+    ];
+
+    const subcategoriesOther = [
+        {label: 'Όλα', value: '0'},
+        {label: 'Βόλεϊ', value: '1'},
+        {label: 'Τένις', value: '2'},
+        {label: 'Άλλα', value: '3'}
+    ];
 
 const Category = () => {
-    const numFootballArticles = useSelector((state) => state.news.football.numArticles);
-    const numBasketballArticles = useSelector((state) => state.news.basketball.numArticles);
-    const numOtherArticles = useSelector((state) => state.news.other.numArticles);
-    const dispatch = useDispatch();
-    
     const { name } = useParams();
-    const [articles, setArticles] = useState([]);
+    const [subcategories, setSubcategories] = useState({})
 
-    setArticles(useSelector((state) => {
+    const dispatch = useDispatch();
+
+    const num = useSelector((state) => {
         switch (name) {
             case 'Ποδόσφαιρο':
-                if (numFootballArticles === 0 || numFootballArticles === 4) {
+                return state.news.football.numArticles;
+            case 'Καλαθοσφαίριση':
+                return state.news.basketball.numArticles;        
+            default:
+                return state.news.other.numArticles;
+        }
+    })
+
+    useEffect(() => {
+        switch (name) {
+            case 'Ποδόσφαιρο':
+                setSubcategories(subcategoriesFootball);
+                if (num === 0 || num === 4) {
                     getFootball(dispatch);
                 }
-                return selectFootball
+                break;
             case 'Καλαθοσφαίριση':
-                if (numBasketballArticles === 0 || numBasketballArticles === 4) {
+                setSubcategories(subcategoriesBasketball);
+                if (num === 0 || num === 4) {
                     getBasketball(dispatch);
                 }
-                return selectBasketball
+                break;      
             default:
-                if (numOtherArticles === 0 || numOtherArticles === 4) {
+                setSubcategories(subcategoriesOther);
+                if (num === 0 || num === 4) {
                     getOther(dispatch);
                 }
-                return selectOther
+                break;
         }
-    }));
+    }, [name, num, dispatch]);
+    
+    const articles = useSelector((state) => {
+        switch (name) {
+            case 'Ποδόσφαιρο':
+                return state.news.football;
+            case 'Καλαθοσφαίριση':
+                return state.news.basketball;        
+            default:
+                return state.news.other;
+        }
+    })
     
     const [filteredArticles, setFilteredArticles] = useState([]);
     const [filter, setFilter] = useState(false);
 
         
     const handleSubcategory = (event, value) => {
-            console.log(event, value, articles);
+            console.log(event, value, articles.articles[0].category);
             if (event.label === "Όλα"){
                 setFilter(false);
-                setFilteredArticles(articles);
+                setFilteredArticles(articles.articles);
             } else {
                 setFilter(true);
-                setFilteredArticles(articles.filter(article=>article.subcategory === event.label));
+                setFilteredArticles(articles.articles.filter(article=>article.subcategory === event.label));
             }
     };
 
@@ -200,11 +246,11 @@ const Category = () => {
         <Container>
             <h3>{name}</h3>
             <div className="dropdown">
-                <Select options={ subcategories } onChange={(event, value) => handleSubcategory(event, value)} />
+                <Select options={ subcategories } defaultValue={{ label: "Όλα", value: 0 }} onChange={(event, value) => handleSubcategory(event, value)} />
             </div>
             <Content>
                 {!filter &&
-                articles.map((blog) =>(
+                articles.articles.map((blog) =>(
                     <Wrap key={blog.id}>
                         <Link to={`/article/` + blog.id}>
                             <div className="contain">
