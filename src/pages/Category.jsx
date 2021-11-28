@@ -27,6 +27,15 @@ const Container = styled.div`
         min-width: 140px;
         color: black;
         background-color: aliceblue;
+        border-radius: 20%;
+        margin-bottom: 10px;
+        div {
+            width: 100%;
+            /* flex-wrap: nowrap; */
+            .css-1hb7zxy-IndicatorsContainer {
+                max-width: 30px;
+            }
+        }
     }
     /* background: linear-gradient(to right, #182147 , white, #182147 ); */
     /* background: linear-gradient(to right, #182147 10%, white 50%, #182147 ); */
