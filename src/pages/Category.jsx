@@ -151,9 +151,20 @@ const subcategories = [
   ];
 
 const Category = () => {
-    const blogs = useSelector((state) => state.user.blogs);
+    const news = useSelector((state) => state.news);
     const { name } = useParams();
     const [articles, setArticles] = useState([]);
+    switch (name) {
+        case 'Ποδόσφαιρο':
+            setArticles(news.football.articles);
+            break;
+        case 'Καλαθοσφαίριση':
+            setArticles(news.basketball.articles);            
+            break;
+        default:
+            setArticles(news.other.articles);
+            break;
+    }
     const [filteredArticles, setFilteredArticles] = useState([]);
     const [filter, setFilter] = useState(false);
 

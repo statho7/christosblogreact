@@ -4,9 +4,11 @@ import styled from 'styled-components'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useState, useEffect } from 'react';
-import link from '../links.json'
+import { useEffect } from 'react';
+// import link from '../links.json'
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { getCarousel } from '../redux/apiCalls';
 
 const ImgSlider = styled(Slider)`
     margin-top: 20px;
@@ -141,32 +143,50 @@ let settings = {
     autoplay: true
 }
 const Carousel = () => {
+    // const { name } = useParams();
+    // const [articles, setArticles] = useState([]);
+    // switch (name) {
+    //     case 'Ποδόσφαιρο':
+    //         setArticles(news.football.articles);
+    //         break;
+    //     case 'Καλαθοσφαίριση':
+    //         setArticles(news.basketball.articles);            
+    //         break;
+    //     default:
+    //         setArticles(news.other.articles);
+    //         break;
+    // }
+    // const [filteredArticles, setFilteredArticles] = useState([]);
+    // const [filter, setFilter] = useState(false);
+
     const [dimensions, setDimensions] = React.useState({ 
         height: window.innerHeight,
         width: window.innerWidth
       })
-    const [news, setNews] = useState([]);
+    // const [news, setNews] = useState([]);
 
-    // console.log(link)
-    const url = link.link + `/api/GetCarousel`;
+    // // console.log(link)
+    // const url = link.link + `/api/GetCarousel`;
+    const dispatch = useDispatch();
     useEffect(() => {
-        if (news.length === 0 ){
-            fetch(url,{method: "GET"})
-            .then(res => {
-                // console.log(res);
-                if(!res.ok){
-                    throw Error('Could not fetch the data for that resource');
-                }
-                return res.json();
-            })
-            .then(data =>{
-                // console.log("lolo",data);
-                setNews(data);
-            })
-            .catch(err =>{
-            console.log("yolo",err);
-            })
-        }
+        getCarousel(dispatch);
+    //     if (news.length === 0 ){
+    //         fetch(url,{method: "GET"})
+    //         .then(res => {
+    //             // console.log(res);
+    //             if(!res.ok){
+    //                 throw Error('Could not fetch the data for that resource');
+    //             }
+    //             return res.json();
+    //         })
+    //         .then(data =>{
+    //             // console.log("lolo",data);
+    //             setNews(data);
+    //         })
+    //         .catch(err =>{
+    //         console.log("yolo",err);
+    //         })
+    //     }
         
         const debouncedHandleResize = debounce(function handleResize() {
           setDimensions({
@@ -188,10 +208,11 @@ const Carousel = () => {
             window.removeEventListener('resize', debouncedHandleResize)
           
       }
-    }, [dimensions, url, news]);
+    }, [dimensions, dispatch]);
     // window.addEventListener("resize", console.log('yolo'))
 
     // console.log(news);
+    const news = useSelector((state) => state.news.carousel.articles);
 
     return (
         <ImgSlider {...settings}>

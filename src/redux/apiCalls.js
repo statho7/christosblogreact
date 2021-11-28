@@ -1,82 +1,179 @@
 import axios from "axios";
-import { updateStart, updateSuccess, updateError } from "./newsSlice"
+import link from '../links.json'
+import { updateCarousel, updateFootball, updateBasketball, updateOther, updateLatest } from "./newsSlice"
 
-export const updateCarousel = async (news, dispatch) => {
-    dispatch(updateStart());
+export const getCarousel = async (dispatch) => {
+    dispatch(updateCarousel({
+            articles : [],
+            pending: true,
+            error: false
+        }));
     try {
-        const res = await axios.get("/api/GetCarousel");
-        dispatch(updateSuccess(res.data));
+        const res = await axios.get(link.link + "/api/GetCarousel");
+        dispatch(updateCarousel({
+            articles : res.data,
+            pending: false,
+            error: false
+        }));
     } catch (err) {
-        dispatch(updateError());
+        dispatch(updateCarousel({
+            articles : [],
+            pending: false,
+            error: true
+        }));
     }
 }
 
-export const updateFootballHome = async (news, dispatch) => {
-    dispatch(updateStart());
+export const getFootballHome = async (dispatch) => {
+    dispatch(updateFootball({
+            articles : [],
+            pending: true,
+            error: false
+        }));
     try {
-        const res = await axios.get("/api/GetCarousel");
-        dispatch(updateSuccess(res.data));
+        const res = await axios.get(link.link + "/api/GetHomePageNews/Ποδόσφαιρο");
+        dispatch(updateFootball({
+            articles : res.data,
+            pending: false,
+            error: false
+        }));
     } catch (err) {
-        dispatch(updateError());
+        dispatch(updateFootball({
+            articles : [],
+            pending: false,
+            error: true
+        }));
     }
 }
 
-export const updateBasketballHome = async (news, dispatch) => {
-    dispatch(updateStart());
+export const getBasketballHome = async (dispatch) => {
+    dispatch(updateBasketball({
+            articles : [],
+            pending: true,
+            error: false
+        }));
     try {
-        const res = await axios.get("/api/GetCarousel");
-        dispatch(updateSuccess(res.data));
+        const res = await axios.get(link.link + "/api/GetHomePageNews/Καλαθοσφαίριση");
+        dispatch(updateBasketball({
+            articles : res.data,
+            pending: false,
+            error: false
+        }));
     } catch (err) {
-        dispatch(updateError());
+        dispatch(updateBasketball({
+            articles : [],
+            pending: false,
+            error: true
+        }));
     }
 }
 
-export const updateOtherHome = async (news, dispatch) => {
-    dispatch(updateStart());
+export const getOtherHome = async (dispatch) => {
+    dispatch(updateOther({
+            articles : [],
+            pending: true,
+            error: false
+        }));
     try {
-        const res = await axios.get("/api/GetCarousel");
-        dispatch(updateSuccess(res.data));
+        const res = await axios.get(link.link + "/api/GetHomePageNews/Άλλα");
+        dispatch(updateOther({
+            articles : res.data,
+            pending: false,
+            error: false
+        }));
     } catch (err) {
-        dispatch(updateError());
+        dispatch(updateOther({
+            articles : [],
+            pending: false,
+            error: true
+        }));
     }
 }
 
-export const updateLatest = async (news, dispatch) => {
-    dispatch(updateStart());
+export const getLatest = async (dispatch) => {
+    dispatch(updateLatest({
+            articles : [],
+            pending: true,
+            error: false
+        }));
     try {
-        const res = await axios.get("/api/GetLatestNews");
-        dispatch(updateSuccess(res.data));
+        const res = await axios.get(link.link + "/api/GetLatestNews");
+        dispatch(updateLatest({
+            articles : res.data,
+            pending: false,
+            error: false
+        }));
     } catch (err) {
-        dispatch(updateError());
+        dispatch(updateLatest({
+            articles : [],
+            pending: false,
+            error: true
+        }));
     }
 }
 
-export const updateFootball = async (news, dispatch) => {
-    dispatch(updateStart());
+export const getFootball = async (dispatch) => {
+    dispatch(updateFootball({
+            articles : [],
+            pending: true,
+            error: false
+        }));
     try {
-        const res = await axios.get("/api/GetCategoryArticles/Ποδόσφαιρο");
-        dispatch(updateSuccess(res.data));
+        const res = await axios.get(link.link + "/api/GetCategoryArticles/Ποδόσφαιρο");
+        dispatch(updateFootball({
+            articles : res.data,
+            pending: false,
+            error: false
+        }));
     } catch (err) {
-        dispatch(updateError());
+        dispatch(updateFootball({
+            articles : [],
+            pending: false,
+            error: true
+        }));
     }
 }
 
-export const updateBasketball = async (news, dispatch) => {
-    dispatch(updateStart());
+export const getBasketball = async (dispatch) => {
+    dispatch(updateBasketball({
+            articles : [],
+            pending: true,
+            error: false
+        }));
     try {
-        const res = await axios.get("/api/GetCategoryArticles/Καλαθοσφαίριση");
-        dispatch(updateSuccess(res.data));
+        const res = await axios.get(link.link + "/api/GetCategoryArticles/Καλαθοσφαίριση");
+        dispatch(updateBasketball({
+            articles : res.data,
+            pending: false,
+            error: false
+        }));
     } catch (err) {
-        dispatch(updateError());
+        dispatch(updateBasketball({
+            articles : [],
+            pending: false,
+            error: true
+        }));
     }
 }
 
-export const updateOther = async (news, dispatch) => {
-    dispatch(updateStart());
+export const getOther = async (dispatch) => {
+    dispatch(updateOther({
+            articles : [],
+            pending: true,
+            error: false
+        }));
     try {
-        const res = await axios.get("/api/GetCategoryArticles/Άλλα");
-        dispatch(updateSuccess(res.data));
+        const res = await axios.get(link.link + "/api/GetCategoryArticles/Άλλα");
+        dispatch(updateOther({
+            articles : res.data,
+            pending: false,
+            error: false
+        }));
     } catch (err) {
-        dispatch(updateError());
+        dispatch(updateOther({
+            articles : [],
+            pending: false,
+            error: true
+        }));
     }
 }

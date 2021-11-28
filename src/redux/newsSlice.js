@@ -31,20 +31,24 @@ export const newsSlice = createSlice({
   },
   reducers: {
     updateCarousel: (state, action) => {
-        state.carousel.pending = true;
+        state.carousel = action.payload;
     },
-    updateSuccess: (state, action) => {
-        state.carousel.pending = false;
-        state.carousel.articles = action.payload;
+    updateFootball: (state, action) => {
+        state.football = action.payload;
     },
-    updateError: (state, action) => {
-        state.carousel.error = true;
-        state.carousel.pending = false;
+    updateBasketball: (state, action) => {
+        state.basketball = action.payload;
+    },
+    updateOther: (state, action) => {
+        state.other = action.payload;
+    },
+    updateLatest: (state, action) => {
+        state.latest = action.payload;
     },
   },
 });
 
-export const { updateStart, updateSuccess, updateError } = newsSlice.actions;
+export const { updateCarousel, updateFootball, updateBasketball, updateOther, updateLatest } = newsSlice.actions;
 
 export const selectCarousel = (state) => state.news.carousel;
 export const selectFootball = (state) => state.news.football;
