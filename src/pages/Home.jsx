@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Authors from '../components/Authors'
 import Carousel from '../components/Carousel'
 import News from '../components/News'
+import Footer from '../components/Footer';
 
 const Container = styled.main`
   position: relative;
@@ -31,6 +32,7 @@ const Home = () => {
             <Carousel />
             <Authors />
             <News />
+            <Footer />
         </Container>
     )
 }

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import styled from 'styled-components'
 import link from '../links.json'
 import { Link } from "react-router-dom"
+import Footer from '../components/Footer';
 
 const Container = styled.div`
     position: relative;
@@ -248,6 +249,7 @@ const Article = () => {
             </ContentMeta> */}
             </>
           }
+          <Footer />
         </Container>
       )
 }

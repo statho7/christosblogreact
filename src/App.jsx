@@ -9,7 +9,6 @@ import {
   Route,
   // Redirect,
 } from "react-router-dom";
-import Footer from './components/Footer';
 import Author from './pages/Author';
 
 const App = () => {
@@ -30,7 +29,6 @@ const App = () => {
           <Category />
         </Route>
       </Switch>
-      <Footer />
     </Router>
   );
 }

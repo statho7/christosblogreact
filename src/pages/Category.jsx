@@ -7,6 +7,7 @@ import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFootball, getBasketball, getOther } from '../redux/apiCalls';
 import { selectBasketball, selectFootball, selectOther } from '../redux/newsSlice';
+import Footer from '../components/Footer';
 
 const Container = styled.div`
     margin-bottom: 45px;
@@ -229,6 +230,7 @@ const Category = () => {
                     </Wrap>
                 ))}
             </Content>
+            <Footer />
         </Container>
     )
 }
