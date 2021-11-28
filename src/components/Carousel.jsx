@@ -143,50 +143,13 @@ let settings = {
     autoplay: true
 }
 const Carousel = () => {
-    // const { name } = useParams();
-    // const [articles, setArticles] = useState([]);
-    // switch (name) {
-    //     case 'Ποδόσφαιρο':
-    //         setArticles(news.football.articles);
-    //         break;
-    //     case 'Καλαθοσφαίριση':
-    //         setArticles(news.basketball.articles);            
-    //         break;
-    //     default:
-    //         setArticles(news.other.articles);
-    //         break;
-    // }
-    // const [filteredArticles, setFilteredArticles] = useState([]);
-    // const [filter, setFilter] = useState(false);
-
     const [dimensions, setDimensions] = React.useState({ 
         height: window.innerHeight,
         width: window.innerWidth
       })
-    // const [news, setNews] = useState([]);
-
-    // // console.log(link)
-    // const url = link.link + `/api/GetCarousel`;
     const dispatch = useDispatch();
     useEffect(() => {
         getCarousel(dispatch);
-    //     if (news.length === 0 ){
-    //         fetch(url,{method: "GET"})
-    //         .then(res => {
-    //             // console.log(res);
-    //             if(!res.ok){
-    //                 throw Error('Could not fetch the data for that resource');
-    //             }
-    //             return res.json();
-    //         })
-    //         .then(data =>{
-    //             // console.log("lolo",data);
-    //             setNews(data);
-    //         })
-    //         .catch(err =>{
-    //         console.log("yolo",err);
-    //         })
-    //     }
         
         const debouncedHandleResize = debounce(function handleResize() {
           setDimensions({
@@ -209,9 +172,7 @@ const Carousel = () => {
           
       }
     }, [dimensions, dispatch]);
-    // window.addEventListener("resize", console.log('yolo'))
 
-    // console.log(news);
     const news = useSelector((state) => state.news.carousel.articles);
 
     return (
