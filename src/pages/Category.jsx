@@ -1,11 +1,12 @@
 import React from 'react'
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import styled from 'styled-components'
-import link from '../links.json'
 import { Link } from "react-router-dom"
 import Select from 'react-select';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getFootball, getBasketball, getOther } from '../redux/apiCalls';
+import { selectBasketball, selectFootball, selectOther } from '../redux/newsSlice';
 
 const Container = styled.div`
     margin-bottom: 45px;
@@ -151,61 +152,48 @@ const subcategories = [
   ];
 
 const Category = () => {
-    const news = useSelector((state) => state.news);
+    const numFootballArticles = useSelector((state) => state.news.football.numArticles);
+    const numBasketballArticles = useSelector((state) => state.news.basketball.numArticles);
+    const numOtherArticles = useSelector((state) => state.news.other.numArticles);
+    const dispatch = useDispatch();
+    
     const { name } = useParams();
     const [articles, setArticles] = useState([]);
-    switch (name) {
-        case 'Ποδόσφαιρο':
-            setArticles(news.football.articles);
-            break;
-        case 'Καλαθοσφαίριση':
-            setArticles(news.basketball.articles);            
-            break;
-        default:
-            setArticles(news.other.articles);
-            break;
-    }
+
+    setArticles(useSelector((state) => {
+        switch (name) {
+            case 'Ποδόσφαιρο':
+                if (numFootballArticles === 0 || numFootballArticles === 4) {
+                    getFootball(dispatch);
+                }
+                return selectFootball
+            case 'Καλαθοσφαίριση':
+                if (numBasketballArticles === 0 || numBasketballArticles === 4) {
+                    getBasketball(dispatch);
+                }
+                return selectBasketball
+            default:
+                if (numOtherArticles === 0 || numOtherArticles === 4) {
+                    getOther(dispatch);
+                }
+                return selectOther
+        }
+    }));
+    
     const [filteredArticles, setFilteredArticles] = useState([]);
     const [filter, setFilter] = useState(false);
 
-    useEffect(() => {
-        const url = link.link + `/api/GetCategoryArticles/` + name;
-        if (articles.length === 0 || articles[0].category !== name){
-            fetch(url,{method: "GET"})
-            .then(res => {
-                if(!res.ok){
-                    throw Error('Could not fetch the data for that resource');
-                }
-                return res.json();
-            })
-            .then(data =>{
-                // console.log("lolo",data);
-                setArticles(data);
-            })
-            .catch(err =>{
-            console.log("yolo",err);
-            })
-        }}, [name, articles]);
-
         
-  const handleSubcategory = (event, value) => {
-        console.log(event, value, articles);
-        if (event.label === "Όλα"){
-            setFilter(false);
-            setFilteredArticles(articles);
-        } else {
-            setFilter(true);
-            setFilteredArticles(articles.filter(article=>article.subcategory === event.label));
-        }
-        // console.log(filteredArticles)
-        // if (action === "dec") {
-    //   setQuantity(quantity - 1);
-    // } else {
-    //   setQuantity(quantity + 1);
-    // }
-
-    // handleClick(action, product, quantity);
-  };
+    const handleSubcategory = (event, value) => {
+            console.log(event, value, articles);
+            if (event.label === "Όλα"){
+                setFilter(false);
+                setFilteredArticles(articles);
+            } else {
+                setFilter(true);
+                setFilteredArticles(articles.filter(article=>article.subcategory === event.label));
+            }
+    };
 
     return (
         <Container>

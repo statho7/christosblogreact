@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getCarousel } from '../redux/apiCalls';
+import { selectCarousel } from '../redux/newsSlice';
 
 const ImgSlider = styled(Slider)`
     margin-top: 20px;
@@ -174,12 +175,12 @@ const Carousel = () => {
       }
     }, [dimensions, dispatch, numArticles]);
 
-    const news = useSelector((state) => state.news.carousel.articles);
+    const news = useSelector(selectCarousel);
 
     return (
         <ImgSlider {...settings}>
-            {news &&
-                news.map((blog) =>(
+            {news.articles &&
+                news.articles.map((blog) =>(
                 <Wrap key={blog.id}>
                     <Link to={`/article/` + blog.id}>
                         <div className="contain">

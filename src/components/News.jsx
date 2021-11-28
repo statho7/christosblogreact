@@ -1,11 +1,10 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import styled from 'styled-components'
-// import { selectNews } from '../redux/newsRedux'
-import { useEffect, useState } from "react";
-import link from '../links.json'
+import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getFootballHome, getBasketballHome, getOtherHome, getLatest } from '../redux/apiCalls';
+import { selectBasketball, selectFootball, selectLatest, selectOther } from '../redux/newsSlice';
 
 const Container = styled.div`
     margin-bottom: 45px;
@@ -154,17 +153,17 @@ const News = () => {
         }
     }, [numLatestArticles, numFootballArticles, numBasketballArticles, numOtherArticles, dispatch]);
     
-    const latestNews = useSelector((state) => state.news.latest.articles);
-    const footballnews = useSelector((state) => state.news.football.articles);
-    const basketballnews = useSelector((state) => state.news.basketball.articles);
-    const othernews = useSelector((state) => state.news.other.articles);
+    const latestNews = useSelector(selectLatest);
+    const footballnews = useSelector(selectFootball);
+    const basketballnews = useSelector(selectBasketball);
+    const othernews = useSelector(selectOther);
 
     return (
         <Container>
             <h4>Τελευταία Νέα</h4>
             <Content>
-                {latestNews &&
-                latestNews.map((blog) =>(
+                {latestNews.articles &&
+                latestNews.articles.slice(0,4).map((blog) =>(
                     <Wrap key={blog.id}>
                         <Link to={`/article/` + blog.id}>
                             <div className="contain">
@@ -179,8 +178,8 @@ const News = () => {
             </Content>
             <h4>Ποδόσφαιρο</h4>
             <Content>
-                {footballnews &&
-                footballnews.map((footballblog) =>(
+                {footballnews.articles &&
+                footballnews.articles.slice(0,4).map((footballblog) =>(
                     <Wrap key={footballblog.id}>
                         <Link to={`/article/` + footballblog.id}>
                             <div className="contain">
@@ -195,8 +194,8 @@ const News = () => {
             </Content>
             <h4>Καλαθοσφαίριση</h4>
             <Content>
-                {basketballnews &&
-                basketballnews.map((basketballblog) =>(
+                {basketballnews.articles &&
+                basketballnews.articles.slice(0,4).map((basketballblog) =>(
                     <Wrap key={basketballblog.id}>
                         <Link to={`/article/` + basketballblog.id}>
                             <div className="contain">
@@ -211,8 +210,8 @@ const News = () => {
             </Content>
             <h4>Άλλα</h4>
             <Content>
-                {othernews &&
-                othernews.map((otherblog) =>(
+                {othernews.articles &&
+                othernews.articles.slice(0,4).map((otherblog) =>(
                     <Wrap key={otherblog.id}>
                         <Link to={`/article/` + otherblog.id}>
                             <div className="contain">
