@@ -1,10 +1,11 @@
 import React from 'react'
-// import { useSelector } from 'react-redux'
 import { Link } from "react-router-dom";
 import styled from 'styled-components'
 // import { selectNews } from '../redux/newsRedux'
 import { useEffect, useState } from "react";
 import link from '../links.json'
+import { useDispatch, useSelector } from 'react-redux';
+import { getFootballHome, getBasketballHome, getOtherHome, getLatest } from '../redux/apiCalls';
 
 const Container = styled.div`
     margin-bottom: 45px;
@@ -132,94 +133,32 @@ const Wrap = styled.div`
 `
 
 const News = () => {
-    const [latestNews, setLatestNews] = useState([]);
-    const [footballnews, setFootballnews] = useState([]);
-    const [basketballnews, setBasketballnews] = useState([]);
-    const [othernews, setOthernews] = useState([]);
-    // useEffect(() => {
-    //   (async function () {
-    //     const { articles } = await( await fetch(`http://localhost:7071/api/Articles/GetAllArticles`)).json();
-    //     setNews(articles);
-    //   })();
-    // });
+    const numLatestArticles = useSelector((state) => state.news.latest.numArticles);
+    const numFootballArticles = useSelector((state) => state.news.football.numArticles);
+    const numBasketballArticles = useSelector((state) => state.news.basketball.numArticles);
+    const numOtherArticles = useSelector((state) => state.news.other.numArticles);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        fetch(link.link + `/api/GetLatestNews`,{method: "GET"})
-        .then(res => {
-            // console.log(res);
-            if(!res.ok){
-                throw Error('Could not fetch the data for that resource');
-            }
-            return res.json();
-        })
-        .then(data =>{
-            // console.log("lolo",data);
-            setLatestNews(data);
-        })
-        .catch(err =>{
-          console.log("yolo",err);
-        })
-         
-        fetch(link.link + `/api/GetFootballNews`,{method: "GET"})
-        .then(res => {
-            // console.log(res);
-            if(!res.ok){
-                throw Error('Could not fetch the data for that resource');
-            }
-            return res.json();
-        })
-        .then(data =>{
-            // console.log("lolo",data);
-            setFootballnews(data);
-        })
-        .catch(err =>{
-          console.log("yolo",err);
-        })
-         
-        fetch(link.link + `/api/GetBasketballNews`,{method: "GET"})
-        .then(res => {
-            // console.log(res);
-            if(!res.ok){
-                throw Error('Could not fetch the data for that resource');
-            }
-            return res.json();
-        })
-        .then(data =>{
-            // console.log("lolo",data);
-            setBasketballnews(data);
-        })
-        .catch(err =>{
-          console.log("yolo",err);
-        })
-         
-        fetch(link.link + `/api/GetOtherNews`,{method: "GET"})
-        .then(res => {
-            // console.log(res);
-            if(!res.ok){
-                throw Error('Could not fetch the data for that resource');
-            }
-            return res.json();
-        })
-        .then(data =>{
-            // console.log("lolo",data);
-            setOthernews(data);
-        })
-        .catch(err =>{
-          console.log("yolo",err);
-        })
-    }, []);
-
-    // const news = data;
-    // console.log(news);
-    // const latestNews = news.sort(function(a,b){
-    //     // Turn your strings into dates, and then subtract them
-    //     // to get a value that is either negative, positive, or zero.
-    //     return Number(b.id) - Number(a.id);
-    //   }).slice(0,4);
-    // const footballnews  = news.filter(blog => blog.category === "Ποδόσφαιρο").slice(0,4);
-    // const basketballnews  = news.filter(blog => blog.category === "Καλαθοσφαίριση").slice(0,4);
-    // const othernews  = news.filter(blog => blog.category === "Άλλα").slice(0,4);
+        if (numLatestArticles === 0) {
+            getLatest(dispatch);
+        }
+        if (numFootballArticles === 0) {
+            getFootballHome(dispatch);
+        }
+        if (numBasketballArticles === 0) {
+            getBasketballHome(dispatch);
+        }
+        if (numOtherArticles === 0) {
+            getOtherHome(dispatch);
+        }
+    }, [numLatestArticles, numFootballArticles, numBasketballArticles, numOtherArticles, dispatch]);
     
+    const latestNews = useSelector((state) => state.news.latest.articles);
+    const footballnews = useSelector((state) => state.news.football.articles);
+    const basketballnews = useSelector((state) => state.news.basketball.articles);
+    const othernews = useSelector((state) => state.news.other.articles);
+
     return (
         <Container>
             <h4>Τελευταία Νέα</h4>
