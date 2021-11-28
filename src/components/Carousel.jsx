@@ -143,14 +143,16 @@ let settings = {
     autoplay: true
 }
 const Carousel = () => {
+    const numArticles = useSelector((state) => state.news.carousel.numArticles);
     const [dimensions, setDimensions] = React.useState({ 
         height: window.innerHeight,
         width: window.innerWidth
       })
     const dispatch = useDispatch();
     useEffect(() => {
-        getCarousel(dispatch);
-        
+        if (numArticles === 0) {
+            getCarousel(dispatch);
+        }
         const debouncedHandleResize = debounce(function handleResize() {
           setDimensions({
             height: window.innerHeight,
@@ -171,7 +173,7 @@ const Carousel = () => {
             window.removeEventListener('resize', debouncedHandleResize)
           
       }
-    }, [dimensions, dispatch]);
+    }, [dimensions, dispatch, numArticles]);
 
     const news = useSelector((state) => state.news.carousel.articles);
 

@@ -5,6 +5,7 @@ import { updateCarousel, updateFootball, updateBasketball, updateOther, updateLa
 export const getCarousel = async (dispatch) => {
     dispatch(updateCarousel({
             articles : [],
+            numArticles: 0,
             pending: true,
             error: false
         }));
@@ -12,12 +13,14 @@ export const getCarousel = async (dispatch) => {
         const res = await axios.get(link.link + "/api/GetCarousel");
         dispatch(updateCarousel({
             articles : res.data,
+            numArticles: res.data.length,
             pending: false,
             error: false
         }));
     } catch (err) {
         dispatch(updateCarousel({
             articles : [],
+            numArticles: 0,
             pending: false,
             error: true
         }));
@@ -27,6 +30,7 @@ export const getCarousel = async (dispatch) => {
 export const getFootballHome = async (dispatch) => {
     dispatch(updateFootball({
             articles : [],
+            numArticles: 0,
             pending: true,
             error: false
         }));
@@ -34,12 +38,14 @@ export const getFootballHome = async (dispatch) => {
         const res = await axios.get(link.link + "/api/GetHomePageNews/Ποδόσφαιρο");
         dispatch(updateFootball({
             articles : res.data,
+            numArticles: res.data.length,
             pending: false,
             error: false
         }));
     } catch (err) {
         dispatch(updateFootball({
             articles : [],
+            numArticles: 0,
             pending: false,
             error: true
         }));
@@ -49,6 +55,7 @@ export const getFootballHome = async (dispatch) => {
 export const getBasketballHome = async (dispatch) => {
     dispatch(updateBasketball({
             articles : [],
+            numArticles: 0,
             pending: true,
             error: false
         }));
@@ -56,12 +63,14 @@ export const getBasketballHome = async (dispatch) => {
         const res = await axios.get(link.link + "/api/GetHomePageNews/Καλαθοσφαίριση");
         dispatch(updateBasketball({
             articles : res.data,
+            numArticles: res.data.length,
             pending: false,
             error: false
         }));
     } catch (err) {
         dispatch(updateBasketball({
             articles : [],
+            numArticles: 0,
             pending: false,
             error: true
         }));
@@ -71,6 +80,7 @@ export const getBasketballHome = async (dispatch) => {
 export const getOtherHome = async (dispatch) => {
     dispatch(updateOther({
             articles : [],
+            numArticles: 0,
             pending: true,
             error: false
         }));
@@ -78,12 +88,14 @@ export const getOtherHome = async (dispatch) => {
         const res = await axios.get(link.link + "/api/GetHomePageNews/Άλλα");
         dispatch(updateOther({
             articles : res.data,
+            numArticles: res.data.length,
             pending: false,
             error: false
         }));
     } catch (err) {
         dispatch(updateOther({
             articles : [],
+            numArticles: 0,
             pending: false,
             error: true
         }));
@@ -93,6 +105,7 @@ export const getOtherHome = async (dispatch) => {
 export const getLatest = async (dispatch) => {
     dispatch(updateLatest({
             articles : [],
+            numArticles: 0,
             pending: true,
             error: false
         }));
@@ -100,12 +113,14 @@ export const getLatest = async (dispatch) => {
         const res = await axios.get(link.link + "/api/GetLatestNews");
         dispatch(updateLatest({
             articles : res.data,
+            numArticles: res.data.length,
             pending: false,
             error: false
         }));
     } catch (err) {
         dispatch(updateLatest({
             articles : [],
+            numArticles: 0,
             pending: false,
             error: true
         }));
@@ -115,6 +130,7 @@ export const getLatest = async (dispatch) => {
 export const getFootball = async (dispatch) => {
     dispatch(updateFootball({
             articles : [],
+            numArticles: 0,
             pending: true,
             error: false
         }));
@@ -122,12 +138,14 @@ export const getFootball = async (dispatch) => {
         const res = await axios.get(link.link + "/api/GetCategoryArticles/Ποδόσφαιρο");
         dispatch(updateFootball({
             articles : res.data,
+            numArticles: res.data.length,
             pending: false,
             error: false
         }));
     } catch (err) {
         dispatch(updateFootball({
             articles : [],
+            numArticles: 0,
             pending: false,
             error: true
         }));
@@ -137,6 +155,7 @@ export const getFootball = async (dispatch) => {
 export const getBasketball = async (dispatch) => {
     dispatch(updateBasketball({
             articles : [],
+            numArticles: 0,
             pending: true,
             error: false
         }));
@@ -144,12 +163,14 @@ export const getBasketball = async (dispatch) => {
         const res = await axios.get(link.link + "/api/GetCategoryArticles/Καλαθοσφαίριση");
         dispatch(updateBasketball({
             articles : res.data,
+            numArticles: res.data.length,
             pending: false,
             error: false
         }));
     } catch (err) {
         dispatch(updateBasketball({
             articles : [],
+            numArticles: 0,
             pending: false,
             error: true
         }));
@@ -159,6 +180,7 @@ export const getBasketball = async (dispatch) => {
 export const getOther = async (dispatch) => {
     dispatch(updateOther({
             articles : [],
+            numArticles: 0,
             pending: true,
             error: false
         }));
@@ -166,12 +188,14 @@ export const getOther = async (dispatch) => {
         const res = await axios.get(link.link + "/api/GetCategoryArticles/Άλλα");
         dispatch(updateOther({
             articles : res.data,
+            numArticles: res.data.length,
             pending: false,
             error: false
         }));
     } catch (err) {
         dispatch(updateOther({
             articles : [],
+            numArticles: 0,
             pending: false,
             error: true
         }));

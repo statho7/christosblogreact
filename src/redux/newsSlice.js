@@ -5,26 +5,31 @@ export const newsSlice = createSlice({
   initialState: {
     carousel: {
         articles : [],
+        numArticles: 0,
         pending: false,
         error: false
     },
     football: {
         articles : [],
+        numArticles: 0,
         pending: false,
         error: false
     },
     basketball: {
         articles : [],
+        numArticles: 0,
         pending: false,
         error: false
     },
     other: {
         articles : [],
+        numArticles: 0,
         pending: false,
         error: false
     },
     latest: {
         articles : [],
+        numArticles: 0,
         pending: false,
         error: false
     },
