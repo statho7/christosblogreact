@@ -46,13 +46,14 @@ const Article = () => {
     const { id } = useParams();
     const [articleData, setArticleData] = useState([]);
 
-    const url = link.link + `/api/GetSingleArticle/` + id;
+    const url = link.link + `/api/G1etSingleArticle/` + id;
     useEffect(() => {
         if (articleData.length === 0 ){
             fetch(url,{method: "GET"})
             .then(res => {
                 // console.log(res);
                 if(!res.ok){
+                    console.log(res.json());
                     throw Error('Could not fetch the data for that resource');
                 }
                 return res.json();
