@@ -22,7 +22,7 @@ namespace ChristosBlog
                 databaseName: "ChristosBlog",
                 collectionName: "Articles",
                 ConnectionStringSetting = "CosmosConnection",
-                SqlQuery ="SELECT * FROM c WHERE c.id = {id}")] IEnumerable<Article> articles,
+                SqlQuery ="SELECT * FROM c WHERE c.id = ToString({id})")] IEnumerable<Article> articles,
             ILogger log)
         {
             if (articles == null)
