@@ -46,7 +46,7 @@ const Article = () => {
     const { id } = useParams();
     const [articleData, setArticleData] = useState([]);
 
-    const url = link.link + `/api/G1etSingleArticle/` + id;
+    const url = link.link + `/api/GetSingleArticle/` + id;
     useEffect(() => {
         if (articleData.length === 0 ){
             fetch(url,{method: "GET"})
