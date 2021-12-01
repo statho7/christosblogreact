@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components'
-// import link from '../links.json'
 import { Link } from "react-router-dom"
 import Footer from '../components/Footer';
 import { getSingleArticle } from '../redux/apiCalls';
@@ -15,7 +14,8 @@ const Container = styled.div`
     display: block;
     margin-top: 5vh;
     padding: 0 calc(8.5vw + 5px);
-    background: radial-gradient(#7168d6, #182147);
+    /* background: radial-gradient(#161336, #273268); */
+    /* background: radial-gradient(#182147, #1b2550); */
 `;
 
 const ImageTitle = styled.div`
@@ -47,16 +47,13 @@ const Content = styled.div`
 const Article = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
-    // const [htmlString, setHtmlString] = useState("");
 
     const num = useSelector((state) => {
-        // console.log(state.news.all)
         return state.news.all.articles.filter(article => article.id === id).length
     })
 
     useEffect(() => {
         if (num === 0) {
-            console.log('swag')
             getSingleArticle(dispatch, id);
         }
         

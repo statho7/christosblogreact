@@ -21,10 +21,13 @@ const Container = styled.div`
         grid-gap: 15vw;
     }
 
-    @media only screen and (max-width: 650px) {
-        grid-template-columns: repeat(1, minmax(0, 1fr));
+    @media only screen and (max-width: 800px) {
+        /* grid-template-columns: repeat(1, minmax(0, 1fr));
         margin-left: 2vw;
-        grid-gap: 8vw;
+        grid-gap: 8vw; */
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
     }
 `
 
@@ -38,6 +41,10 @@ const Wrap = styled.div`
         rgb(0 0 0 / 73%) 0px 16px 10px -10px;
         transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
     
+    @media only screen and (max-width: 650px) {
+        min-width: 300px;
+    }
+
     img { 
         width: 100%;
         height: 100%;

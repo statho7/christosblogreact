@@ -143,12 +143,22 @@ let settings = {
     slidesToScroll: 1,
     autoplay: true
 }
+
 const Carousel = () => {
     const numArticles = useSelector((state) => state.news.carousel.numArticles);
     const [dimensions, setDimensions] = React.useState({ 
         height: window.innerHeight,
         width: window.innerWidth
       })
+
+      if (dimensions.width > 1000) {
+        settings.slidesToShow = 3;
+    } else if (dimensions.width > 600) {
+        settings.slidesToShow = 2;
+    } else {
+        settings.slidesToShow = 1;
+    }
+    
     const dispatch = useDispatch();
     useEffect(() => {
         if (numArticles === 0) {
@@ -166,8 +176,8 @@ const Carousel = () => {
           } else {
               settings.slidesToShow = 1;
           }
-        console.log(dimensions.width)
-    }, 500)
+        // console.log(dimensions.width)
+    }, 100)
         window.addEventListener('resize', debouncedHandleResize)
         return _ => {
             window.removeEventListener('resize', debouncedHandleResize)

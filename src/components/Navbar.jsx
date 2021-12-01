@@ -34,7 +34,7 @@ const NavMenu = styled.div`
         padding: 0 12px;
         cursor: pointer;
 
-        @media only screen and (max-width: 500px) {
+        @media only screen and (max-width: 900px) {
             padding: 0 2px;
         }
 
@@ -78,7 +78,7 @@ const Wrap = styled.div`
     margin-left: auto; 
     margin-right: 0;
     
-    @media only screen and (max-width: 500px) {
+    @media only screen and (max-width: 800px) {
         a{
             padding: 0 5px;
         }
