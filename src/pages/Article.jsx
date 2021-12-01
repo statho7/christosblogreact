@@ -1,9 +1,9 @@
 import React from 'react'
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components'
-import link from '../links.json'
+// import link from '../links.json'
 import { Link } from "react-router-dom"
 import Footer from '../components/Footer';
 import { getSingleArticle } from '../redux/apiCalls';
@@ -47,7 +47,7 @@ const Content = styled.div`
 const Article = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
-    const [htmlString, setHtmlString] = useState("");
+    // const [htmlString, setHtmlString] = useState("");
 
     const num = useSelector((state) => {
         // console.log(state.news.all)
