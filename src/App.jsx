@@ -16,9 +16,6 @@ const App = () => {
     <Router>
       <Navbar />
       <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
         <Route path="/article/:id">
           <Article />
         </Route>
@@ -27,6 +24,9 @@ const App = () => {
         </Route>
         <Route path="/category/:name">
           <Category />
+        </Route>
+        <Route path="/">
+          <Home />
         </Route>
       </Switch>
     </Router>
