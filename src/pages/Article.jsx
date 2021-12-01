@@ -1,10 +1,12 @@
 import React from 'react'
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components'
 import link from '../links.json'
 import { Link } from "react-router-dom"
 import Footer from '../components/Footer';
+import { getSingleArticle } from '../redux/apiCalls';
 
 const Container = styled.div`
     position: relative;
@@ -43,31 +45,30 @@ const Content = styled.div`
 `;
 
 const Article = () => {
-    const { id } = useParams();
-    const [articleData, setArticleData] = useState([]);
+    const { id } = useParams();    
+    console.log(id)
+    const dispatch = useDispatch();
+    const [htmlString, setHtmlString] = useState("");
 
-    const url = link.link + `/api/GetSingleArticle/` + id;
+    const num = useSelector((state) => {   
+        console.log("yolo")     
+        const article = state.news.all.articles.filter(article => article.id === id);
+        return article.length
+    })
+
     useEffect(() => {
-        if (articleData.length === 0 ){
-            fetch(url,{method: "GET"})
-            .then(res => {
-                // console.log(res);
-                if(!res.ok){
-                    console.log(res.json());
-                    throw Error('Could not fetch the data for that resource');
-                }
-                return res.json();
-            })
-            .then(data =>{
-                // console.log("lolo",data);
-                setArticleData(data[0]);
-            })
-            .catch(err =>{
-            console.log("yolo",err);
-            })
-        }})
+        if (num === 0) {
+            console.log('swag')
+            getSingleArticle(dispatch, id);
+        }
+        
+    }, [num, dispatch, id]);
 
-    const htmlString = articleData.content;
+    const articleData = useSelector((state) => {
+        const article = state.news.all.articles.filter(article => article.id === id)[0];
+        setHtmlString(article.content);
+        return article;
+    });
 
         
     return (
