@@ -59,12 +59,12 @@ export const newsSlice = createSlice({
         state.all.articles.push(action.payload.articles);
     },
     updateSingle: (state, action) => {
-        console.log(action.payload)
-        const article = state.all.articles.filter(article => article.id === action.payload.id);
+        // console.log("api", action.payload[0])
+        const article = state.all.articles.filter(article => article.id === action.payload[0].id);
         if (article.length === 0 ){
-            state.all.articles.push(action.payload);
+            state.all.articles.push(action.payload[0]);
         } else {
-            state.all.articles[state.all.articles.indexOf(article[0])] = action.payload;
+            state.all.articles[state.all.articles.indexOf(article[0])] = action.payload[0];
         }
     },
   },

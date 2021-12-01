@@ -45,15 +45,13 @@ const Content = styled.div`
 `;
 
 const Article = () => {
-    const { id } = useParams();    
-    console.log(id)
+    const { id } = useParams();
     const dispatch = useDispatch();
     const [htmlString, setHtmlString] = useState("");
 
-    const num = useSelector((state) => {   
-        console.log("yolo")     
-        const article = state.news.all.articles.filter(article => article.id === id);
-        return article.length
+    const num = useSelector((state) => {
+        // console.log(state.news.all)
+        return state.news.all.articles.filter(article => article.id === id).length
     })
 
     useEffect(() => {
@@ -64,11 +62,7 @@ const Article = () => {
         
     }, [num, dispatch, id]);
 
-    const articleData = useSelector((state) => {
-        const article = state.news.all.articles.filter(article => article.id === id)[0];
-        setHtmlString(article.content);
-        return article;
-    });
+    const articleData = useSelector((state) => state.news.all.articles.filter(article => article.id === id)[0]);
 
         
     return (
@@ -87,7 +81,7 @@ const Article = () => {
             <Content>
                 <p>Αρθρογράφος: {articleData.author}</p>
                 <br />
-                <div dangerouslySetInnerHTML={{__html: htmlString}} />
+                <div dangerouslySetInnerHTML={{__html: articleData.content}} />
             </Content>
             </>
           }
