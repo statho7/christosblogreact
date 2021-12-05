@@ -7,35 +7,21 @@ import { Link } from "react-router-dom"
 import Footer from '../components/Footer';
 import { getSingleArticle } from '../redux/apiCalls';
 import {
-    FacebookShareButton,
-    GooglePlusShareButton,
-    LinkedinShareButton,
-    TwitterShareButton,
-    TelegramShareButton,
-    WhatsappShareButton,
-    PinterestShareButton,
-    VKShareButton,
-    OKShareButton,
-    RedditShareButton,
-    TumblrShareButton,
-    LivejournalShareButton,
-    MailruShareButton,
-    ViberShareButton,
-    WorkplaceShareButton,
     EmailShareButton,
-    FacebookShareCount,
-    GooglePlusShareCount,
-    LinkedinShareCount,
-    PinterestShareCount,
-    VKShareCount,
-    OKShareCount,
-    RedditShareCount,
-    TumblrShareCount,
+    FacebookShareButton,
+    PinterestShareButton,
+    TelegramShareButton,
+    TwitterShareButton,
+    ViberShareButton,
+    WhatsappShareButton,
+    EmailIcon,
     FacebookIcon,
+    PinterestIcon,
+    TelegramIcon,
     TwitterIcon,
-    WhatsappIcon,
     ViberIcon,
-  } from 'react-share';
+    WhatsappIcon
+  } from "react-share";
 
 const Container = styled.div`
     position: relative;
@@ -71,6 +57,10 @@ const Content = styled.div`
 
     p {
         justify-content: center;
+    }
+
+    .social button{
+        margin: 5px;
     }
 `;
 
@@ -118,7 +108,7 @@ const Article = () => {
                     <Content>
                         <p>Αρθρογράφος: {articleData.author}</p>
                         <p>Ημερομηνία: {articleData.date.slice(-2)}/{articleData.date.slice(5,7)}/{articleData.date.slice(0,4)}</p>
-                        <p>Κατηγορία: <u><Link style={{color: 'blue'}} to={"/category/" + articleData.category}>{articleData.category}</Link></u></p>
+                        <p>Κατηγορία: <u><Link style={{color: 'lightblue'}} to={"/category/" + articleData.category}>#{articleData.category}</Link></u></p>
                         <p>Υποκατηγορία: {articleData.subcategory}</p>
                         <br />
                         <div dangerouslySetInnerHTML={{__html: articleData.content}} />
@@ -136,11 +126,17 @@ const Article = () => {
                             <ViberShareButton url={"https://mango-coast-0ce694803.azurestaticapps.net/article/" + id}>
                                 <ViberIcon size={32} round={true} />
                             </ViberShareButton>
+                            <EmailShareButton url={"https://mango-coast-0ce694803.azurestaticapps.net/article/" + id}>
+                                <EmailIcon size={32} round={true} />
+                            </EmailShareButton>
+                            <PinterestShareButton url={"https://mango-coast-0ce694803.azurestaticapps.net/article/" + id}>
+                                <PinterestIcon size={32} round={true} />
+                            </PinterestShareButton>
+                            <TelegramShareButton url={"https://mango-coast-0ce694803.azurestaticapps.net/article/" + id}>
+                                <TelegramIcon size={32} round={true} />
+                            </TelegramShareButton>
                         </div>
                     </Content>
-                    {/* <div class="fb-share-button" data-href={"https://mango-coast-0ce694803.azurestaticapps.net/article/" + id} data-layout="button" data-size="large">
-                        <a target="_blank" href={"https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmango-coast-0ce694803.azurestaticapps.net%2Farticle%2F" + id + "&amp;src=sdkpreparse"} class="fb-xfbml-parse-ignore">Share on Facebook</a>
-                    </div> */}
                 </>
             }
           <Footer />
