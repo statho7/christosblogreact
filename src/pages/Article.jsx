@@ -88,10 +88,10 @@ const Article = () => {
                     <Content>
                         <p>Αρθρογράφος: {articleData.author}</p>
                         <p>Ημερομηνία: {articleData.date.slice(-2)}/{articleData.date.slice(5,7)}/{articleData.date.slice(0,4)}</p>
+                        <p>Κατηγορία: <u><Link style={{color: 'blue'}} to={"/category/" + articleData.category}>{articleData.category}</Link></u></p>
+                        <p>Υποκατηγορία: {articleData.subcategory}</p>
                         <br />
                         <div dangerouslySetInnerHTML={{__html: articleData.content}} />
-                        <p>Κατηγορία: {articleData.category}</p>
-                        <p>Υποκατηγορία: {articleData.subcategory}</p>
                     </Content>
                 </>
             }
