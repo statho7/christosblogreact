@@ -203,12 +203,23 @@ export const getOther = async (dispatch) => {
 }
 
 export const getSingleArticle = async (dispatch, id) => {
+    dispatch(updateSingle({
+        article : {},
+        pending: true,
+        error: false
+    }));
     try {
         const res = await axios.get(link.link + "/api/GetSingleArticle/" + id);
-        dispatch(updateSingle(res.data));
+        dispatch(updateSingle({
+            article : res.data[0],
+            pending: false,
+            error: false
+        }));
     } catch (err) {
         dispatch(updateSingle({
-            article: {}
+            article : {},
+            pending: false,
+            error: true
         }));
     }
 }
