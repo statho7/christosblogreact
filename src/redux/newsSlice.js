@@ -96,21 +96,11 @@ export const newsSlice = createSlice({
         const authorArticles = state.all.articles.filter(article => action.payload.articles.indexOf(article) !== -1);
         state.all.pending = action.payload.pending;
         state.all.error = action.payload.error;
-        console.log("intersection", action.payload, authorArticles);
         for (var index in action.payload.articles) {
             if (state.all.articles.filter(article => article.id === action.payload.articles[index].id).length === 0){
                 state.all.articles.push(action.payload.articles[index]);
             }
         }
-        // if (authorArticles.length === 0 && action.payload.articles.length !== 0){
-        //     for (var index in action.payload.articles) {
-        //         state.all.articles.push(action.payload.articles[index]);
-        //     }
-        // } else {
-        //     console.log("all", state.all.articles)
-        //     console.log("new", action.payload.articles)
-        //     // state.all.articles[state.all.articles.indexOf(authorArticles[0])] = action.payload.articles;
-        // }
     },
   },
 });
