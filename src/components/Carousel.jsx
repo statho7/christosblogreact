@@ -23,7 +23,6 @@ const ImgSlider = styled(Slider)`
     }
 
     .slick-slide {
-        /* width: 100% !important; */
         height: 100% !important;
         display: flex;
         div {
@@ -44,36 +43,30 @@ const ImgSlider = styled(Slider)`
         z-index: 1;
     }
 
-    /* .slick-slide.slick-active{
-        padding-right: 40px;
-    } */
-
 `
 
 const Wrap = styled.div`
     cursor: pointer;
     padding-right: 25px;
-
+    min-height: 220px;
+    width: 100% !important;
 
     .contain {
         position: relative;
-        /* padding: 25px; */
     }
 
     .overlay {
-        border-radius: 55px;
+        border-radius: 60px;
         position: absolute;
         top:0;
         bottom: 0;
         left: 0;
-        /* right: 5%; */
         background-color: rgba(50,50,50,0.75);
         overflow: hidden;
         border: 4px solid rgb(249, 249, 249, 0.8);
-        /* margin: 0px !important; */
-        width: 94%;
+        width: 93%;
         height: 100%;
-        min-height: 100px;
+        min-height: 220px;
         max-width: 360px;
         max-height: 220px;
         -webkit-transform: scale(0);
@@ -103,24 +96,17 @@ const Wrap = styled.div`
     }
 
     img {
-        /* border: 4px solid transparent; */
-        /* border: 0.25px solid rgb(249, 249, 249, 0.1); */
         border-radius: 55px;
-        /* margin: 10px; */
         
         width: 95%;
         height: 100%;
-        min-height: 100px;
+        min-height: 220px;
         max-width: 360px;
         max-height: 220px;
 
         box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px, 
         rgb(0 0 0 / 73%) 0px 16px 10px -10px;
         transition-duration: 300ms;
-
-        /* &:hover {
-            border: 4px solid rgb(249, 249, 249, 0.8);
-        } */
     }
 `
 
@@ -176,7 +162,6 @@ const Carousel = () => {
           } else {
               settings.slidesToShow = 1;
           }
-        // console.log(dimensions.width)
     }, 100)
         window.addEventListener('resize', debouncedHandleResize)
         return _ => {
