@@ -60,7 +60,7 @@ const Content = styled.div`
     }
 
     .social button{
-        margin: 5px;
+        margin: 0 5px;
     }
 `;
 
