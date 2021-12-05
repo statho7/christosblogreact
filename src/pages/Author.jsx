@@ -189,7 +189,7 @@ const Author = () => {
                     </div>
                 } */}
                 {articles &&
-                articles.map((blog) =>(
+                articles.sort(function(a, b){return Number(b.id)-Number(a.id)}).map((blog) =>(
                     <Wrap key={blog.id}>
                         <Link to={`/article/` + blog.id}>
                             <div className="contain">
