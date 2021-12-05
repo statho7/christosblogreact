@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { useParams } from "react-router-dom";
 import {  useState } from "react";
 import styled from 'styled-components'
@@ -29,13 +29,7 @@ const Container = styled.div`
         background-color: aliceblue;
         border-radius: 20%;
         margin-bottom: 20px;
-        div {
-            width: 100%;
-            /* flex-wrap: nowrap; */
-            .css-1hb7zxy-IndicatorsContainer {
-                max-width: 30px;
-            }
-        }
+        
     }
     /* background: linear-gradient(to right, #182147 , white, #182147 ); */
     /* background: linear-gradient(to right, #182147 10%, white 50%, #182147 ); */
@@ -250,11 +244,25 @@ const Category = () => {
             }
     };
 
+    const customStyles = useMemo(
+        () => ({
+          indicatorsContainer: (provided) => ({
+            ...provided,
+            maxWidth: "30px",
+          }),
+          container: (provided) => ({
+              ...provided,
+              width: "100%"
+          })
+        }),
+        []
+      );
+
     return (
         <Container>
             <h3>{name}</h3>
             <div className="dropdown">
-                <Select options={ subcategories } defaultValue={{ label: "Όλα", value: 0 }} onChange={(event, value) => handleSubcategory(event, value)} />
+                <Select options={ subcategories } styles={customStyles} defaultValue={{ label: "Όλα", value: 0 }} onChange={(event, value) => handleSubcategory(event, value)} />
             </div>
             <Content>
                 {!filter &&
