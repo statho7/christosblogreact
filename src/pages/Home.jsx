@@ -2,8 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import Authors from '../components/Authors'
 import Carousel from '../components/Carousel'
-import News from '../components/News'
-import Footer from '../components/Footer';
+// import News from '../components/News'
+// import Footer from '../components/Footer';
+import { Suspense, lazy } from 'react';
 
 const Container = styled.main`
   position: relative;
@@ -26,13 +27,18 @@ const Container = styled.main`
   }
 `;
 
+const News = lazy(() => import('../components/News'));
+const Footer = lazy(() => import('../components/Footer'));
+
 const Home = () => {
     return (
         <Container>
+        <Suspense fallback={<div>Loading...</div>}>
             <Carousel />
             <Authors />
             <News />
             <Footer />
+        </Suspense>
         </Container>
     )
 }
