@@ -1,8 +1,7 @@
 import React from 'react'
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styled from 'styled-components'
-import link from '../links.json'
 import { Link } from "react-router-dom"
 import Footer from '../components/Footer';
 import {
@@ -21,6 +20,8 @@ import {
     ViberIcon,
     WhatsappIcon
   } from "react-share";
+import { useDispatch, useSelector } from 'react-redux';
+import { getAuthor } from '../redux/apiCalls';
 
 const Container = styled.div`
     margin-bottom: 45px;
@@ -157,32 +158,36 @@ const Wrap = styled.div`
 
 const Author = () => {
     const { name } = useParams();
-    const [articles, setArticles] = useState([]);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        const url = link.link + `/api/GetAuthorArticles/` + name;
-        if (articles.length === 0 ){
-            fetch(url,{method: "GET"})
-            .then(res => {
-                if(!res.ok){
-                    throw Error('Could not fetch the data for that resource');
-                }
-                return res.json();
-            })
-            .then(data =>{
-                // console.log("lolo",data);
-                setArticles(data);
-            })
-            .catch(err =>{
-            console.log("yolo",err);
-            })
-        }}, [name, articles.length]);
+        getAuthor(dispatch, name);
+        
+    }, [dispatch, name]);
+
+    const articles = useSelector((state) => state.news.all.articles.filter(article => article.author.includes(name)));
+    // const pending = useSelector((state) => state.news.all.pending);
+    // const error = useSelector((state) => state.news.all.error);
 
 
     return (
         <Container>
             <h3>{name}</h3>
             <Content>
+                {/* {pending && 
+                    <div className="not-found">
+                        <h2>Loading Article</h2>
+                        <p>Please wait !</p>
+                        <Link to="/">Back to the homepage...</Link>
+                    </div>
+                }
+                {error && 
+                    <div className="not-found">
+                        <h2>Sorry</h2>
+                        <p>That page cannot be found</p>
+                        <Link to="/">Back to the homepage...</Link>
+                    </div>
+                } */}
                 {articles &&
                 articles.map((blog) =>(
                     <Wrap key={blog.id}>
