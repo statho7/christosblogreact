@@ -1,3 +1,4 @@
+/* eslint-disable no-loop-func */
 import { createSlice } from "@reduxjs/toolkit";
 
 export const newsSlice = createSlice({
@@ -43,23 +44,43 @@ export const newsSlice = createSlice({
   reducers: {
     updateCarousel: (state, action) => {
         state.carousel = action.payload;
-        state.all.articles.push(action.payload.articles);
+        for (var index in action.payload.articles) {
+            if (state.all.articles.filter(article => article.id === action.payload.articles[index].id).length === 0){
+                state.all.articles.push(action.payload.articles[index]);
+            }
+        }
     },
     updateFootball: (state, action) => {
         state.football = action.payload;
-        state.all.articles.push(action.payload.articles);
+        for (var index in action.payload.articles) {
+            if (state.all.articles.filter(article => article.id === action.payload.articles[index].id).length === 0){
+                state.all.articles.push(action.payload.articles[index]);
+            }
+        }
     },
     updateBasketball: (state, action) => {
         state.basketball = action.payload;
-        state.all.articles.push(action.payload.articles);
+        for (var index in action.payload.articles) {
+            if (state.all.articles.filter(article => article.id === action.payload.articles[index].id).length === 0){
+                state.all.articles.push(action.payload.articles[index]);
+            }
+        }
     },
     updateOther: (state, action) => {
         state.other = action.payload;
-        state.all.articles.push(action.payload.articles);
+        for (var index in action.payload.articles) {
+            if (state.all.articles.filter(article => article.id === action.payload.articles[index].id).length === 0){
+                state.all.articles.push(action.payload.articles[index]);
+            }
+        }
     },
     updateLatest: (state, action) => {
         state.latest = action.payload;
-        state.all.articles.push(action.payload.articles);
+        for (var index in action.payload.articles) {
+            if (state.all.articles.filter(article => article.id === action.payload.articles[index].id).length === 0){
+                state.all.articles.push(action.payload.articles[index]);
+            }
+        }
     },
     updateSingle: (state, action) => {
         const article = state.all.articles.filter(article => article.id === action.payload.article.id);
@@ -71,10 +92,30 @@ export const newsSlice = createSlice({
             state.all.articles[state.all.articles.indexOf(article[0])] = action.payload.article;
         }
     },
+    updateAuthor: (state, action) => {
+        const authorArticles = state.all.articles.filter(article => action.payload.articles.indexOf(article) !== -1);
+        state.all.pending = action.payload.pending;
+        state.all.error = action.payload.error;
+        console.log("intersection", action.payload, authorArticles);
+        for (var index in action.payload.articles) {
+            if (state.all.articles.filter(article => article.id === action.payload.articles[index].id).length === 0){
+                state.all.articles.push(action.payload.articles[index]);
+            }
+        }
+        // if (authorArticles.length === 0 && action.payload.articles.length !== 0){
+        //     for (var index in action.payload.articles) {
+        //         state.all.articles.push(action.payload.articles[index]);
+        //     }
+        // } else {
+        //     console.log("all", state.all.articles)
+        //     console.log("new", action.payload.articles)
+        //     // state.all.articles[state.all.articles.indexOf(authorArticles[0])] = action.payload.articles;
+        // }
+    },
   },
 });
 
-export const { updateCarousel, updateFootball, updateBasketball, updateOther, updateLatest, updateSingle } = newsSlice.actions;
+export const { updateCarousel, updateFootball, updateBasketball, updateOther, updateLatest, updateSingle, updateAuthor } = newsSlice.actions;
 
 export const selectCarousel = (state) => state.news.carousel;
 export const selectFootball = (state) => state.news.football;
