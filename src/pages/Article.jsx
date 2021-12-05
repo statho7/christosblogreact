@@ -60,28 +60,38 @@ const Article = () => {
     }, [num, dispatch, id]);
 
     const articleData = useSelector((state) => state.news.all.articles.filter(article => article.id === id)[0]);
+    const pending = useSelector((state) => state.news.all.pending);
+    const error = useSelector((state) => state.news.all.error);
 
         
     return (
         <Container>
-          {!articleData && 
-            <div className="not-found">
-                <h2>Sorry</h2>
-                <p>That page cannot be found</p>
-                <Link to="/">Back to the homepage...</Link>
-            </div>
+            {pending && 
+                <div className="not-found">
+                    <h2>Loading Article</h2>
+                    <p>Please wait !</p>
+                    <Link to="/">Back to the homepage...</Link>
+                </div>
             }
-            {articleData && <>        
-            <ImageTitle>
-                <img alt={articleData.title} src={articleData.imgLink} />
-            </ImageTitle>
-            <Content>
-                <p>Αρθρογράφος: {articleData.author}</p>
-                <br />
-                <div dangerouslySetInnerHTML={{__html: articleData.content}} />
-            </Content>
-            </>
-          }
+            {error && 
+                <div className="not-found">
+                    <h2>Sorry</h2>
+                    <p>That page cannot be found</p>
+                    <Link to="/">Back to the homepage...</Link>
+                </div>
+            }
+            {articleData && 
+                <>        
+                    <ImageTitle>
+                        <img alt={articleData.title} src={articleData.imgLink} />
+                    </ImageTitle>
+                    <Content>
+                        <p>Αρθρογράφος: {articleData.author}</p>
+                        <br />
+                        <div dangerouslySetInnerHTML={{__html: articleData.content}} />
+                    </Content>
+                </>
+            }
           <Footer />
         </Container>
       )
