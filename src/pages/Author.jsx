@@ -5,14 +5,38 @@ import styled from 'styled-components'
 import link from '../links.json'
 import { Link } from "react-router-dom"
 import Footer from '../components/Footer';
+import {
+    EmailShareButton,
+    FacebookShareButton,
+    PinterestShareButton,
+    TelegramShareButton,
+    TwitterShareButton,
+    ViberShareButton,
+    WhatsappShareButton,
+    EmailIcon,
+    FacebookIcon,
+    PinterestIcon,
+    TelegramIcon,
+    TwitterIcon,
+    ViberIcon,
+    WhatsappIcon
+  } from "react-share";
 
 const Container = styled.div`
     margin-bottom: 45px;
     padding: 0px 25px;
 
-    h3 {
-            display: flex;
-            justify-content: center;
+    h3, .social {
+        display: flex;
+        justify-content: center;
+    }
+
+    .social{
+        margin: 0 15px;
+    }
+
+    .social button{
+        margin: 0 5px;
     }
     /* background: linear-gradient(to right, #182147 , white, #182147 ); */
     /* background: linear-gradient(to right, #182147 10%, white 50%, #182147 ); */
@@ -173,6 +197,30 @@ const Author = () => {
                     </Wrap>
                 ))}
             </Content>
+            <br />
+            <div className="social">                        
+                <FacebookShareButton url={"https://mango-coast-0ce694803.azurestaticapps.net/author/" + name + "/"}>
+                    <FacebookIcon size={32} round={true} />
+                </FacebookShareButton>
+                <TwitterShareButton url={"https://mango-coast-0ce694803.azurestaticapps.net/author/" + name + "/"}>
+                    <TwitterIcon size={32} round={true} />
+                </TwitterShareButton>
+                <WhatsappShareButton url={"https://mango-coast-0ce694803.azurestaticapps.net/author/" + name + "/"}>
+                    <WhatsappIcon size={32} round={true} />
+                </WhatsappShareButton>
+                <ViberShareButton url={"https://mango-coast-0ce694803.azurestaticapps.net/author/" + name + "/"}>
+                    <ViberIcon size={32} round={true} />
+                </ViberShareButton>
+                <EmailShareButton url={"https://mango-coast-0ce694803.azurestaticapps.net/author/" + name + "/"}>
+                    <EmailIcon size={32} round={true} />
+                </EmailShareButton>
+                <PinterestShareButton url={"https://mango-coast-0ce694803.azurestaticapps.net/author/" + name + "/"}>
+                    <PinterestIcon size={32} round={true} />
+                </PinterestShareButton>
+                <TelegramShareButton url={"https://mango-coast-0ce694803.azurestaticapps.net/author/" + name + "/"}>
+                    <TelegramIcon size={32} round={true} />
+                </TelegramShareButton>
+            </div>
             <Footer />
         </Container>
     )
