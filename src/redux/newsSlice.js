@@ -93,7 +93,6 @@ export const newsSlice = createSlice({
         }
     },
     updateAuthor: (state, action) => {
-        const authorArticles = state.all.articles.filter(article => action.payload.articles.indexOf(article) !== -1);
         state.all.pending = action.payload.pending;
         state.all.error = action.payload.error;
         for (var index in action.payload.articles) {
