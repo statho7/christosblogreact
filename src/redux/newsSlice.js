@@ -34,7 +34,10 @@ export const newsSlice = createSlice({
         error: false
     },
     all: {
-        articles : []
+        articles : [],
+        numArticles: 0,
+        pending: false,
+        error: false
     },
   },
   reducers: {
@@ -59,12 +62,13 @@ export const newsSlice = createSlice({
         state.all.articles.push(action.payload.articles);
     },
     updateSingle: (state, action) => {
-        // console.log("api", action.payload[0])
-        const article = state.all.articles.filter(article => article.id === action.payload[0].id);
+        const article = state.all.articles.filter(article => article.id === action.payload.article.id);
+        state.all.pending = action.payload.pending;
+        state.all.error = action.payload.error;
         if (article.length === 0 ){
-            state.all.articles.push(action.payload[0]);
+            state.all.articles.push(action.payload.article);
         } else {
-            state.all.articles[state.all.articles.indexOf(article[0])] = action.payload[0];
+            state.all.articles[state.all.articles.indexOf(article[0])] = action.payload.article;
         }
     },
   },
