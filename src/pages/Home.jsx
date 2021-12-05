@@ -2,8 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import Authors from '../components/Authors'
 import Carousel from '../components/Carousel'
-// import News from '../components/News'
-// import Footer from '../components/Footer';
 import { Suspense, lazy } from 'react';
 
 const Container = styled.main`

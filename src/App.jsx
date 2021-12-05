@@ -1,15 +1,12 @@
 import './App.css';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
-// import Article from './pages/Article';
-// import Category from './pages/Category';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   // Redirect,
 } from "react-router-dom";
-// import Author from './pages/Author';
 import { Suspense, lazy } from 'react';
 
 const Author = lazy(() => import('./pages/Author'));
