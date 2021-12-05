@@ -12,7 +12,7 @@ import Footer from '../components/Footer';
 
 const Container = styled.div`
     margin-bottom: 45px;
-    padding: 0px 25px;
+    padding: 0px 12.5%;
 
     h3 {
             display: flex;
@@ -24,11 +24,11 @@ const Container = styled.div`
         justify-content: center;
         margin: 0 auto;
         width: 9vw;
-        min-width: 140px;
+        min-width: 160px;
         color: black;
         background-color: aliceblue;
         border-radius: 20%;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
         div {
             width: 100%;
             /* flex-wrap: nowrap; */
@@ -48,7 +48,6 @@ const Content = styled.div`
     display: grid;
     grid-gap: 25px;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    justify-content: space-center;
 
     @media (max-width: 1150px) {
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -64,7 +63,7 @@ const Content = styled.div`
 `
 
 const Wrap = styled.div`
-    min-height: 100px;
+    min-height: 200px;
     min-width: 100px;
     max-height: 20vh;
     max-width: 36vh;
@@ -138,7 +137,7 @@ const Wrap = styled.div`
     }
         
     img {
-        min-height: 100px;
+        min-height: 200px;
         min-width: 100px;
         max-height: 20vh;
         max-width: 36vh;
