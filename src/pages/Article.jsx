@@ -6,6 +6,36 @@ import styled from 'styled-components'
 import { Link } from "react-router-dom"
 import Footer from '../components/Footer';
 import { getSingleArticle } from '../redux/apiCalls';
+import {
+    FacebookShareButton,
+    GooglePlusShareButton,
+    LinkedinShareButton,
+    TwitterShareButton,
+    TelegramShareButton,
+    WhatsappShareButton,
+    PinterestShareButton,
+    VKShareButton,
+    OKShareButton,
+    RedditShareButton,
+    TumblrShareButton,
+    LivejournalShareButton,
+    MailruShareButton,
+    ViberShareButton,
+    WorkplaceShareButton,
+    EmailShareButton,
+    FacebookShareCount,
+    GooglePlusShareCount,
+    LinkedinShareCount,
+    PinterestShareCount,
+    VKShareCount,
+    OKShareCount,
+    RedditShareCount,
+    TumblrShareCount,
+    FacebookIcon,
+    TwitterIcon,
+    WhatsappIcon,
+    ViberIcon,
+  } from 'react-share';
 
 const Container = styled.div`
     position: relative;
@@ -92,7 +122,25 @@ const Article = () => {
                         <p>Υποκατηγορία: {articleData.subcategory}</p>
                         <br />
                         <div dangerouslySetInnerHTML={{__html: articleData.content}} />
+                        <br />
+                        <div className="social">                        
+                            <FacebookShareButton url={"https://mango-coast-0ce694803.azurestaticapps.net/article/" + id}>
+                                <FacebookIcon size={32} round={true} />
+                            </FacebookShareButton>
+                            <TwitterShareButton url={"https://mango-coast-0ce694803.azurestaticapps.net/article/" + id}>
+                                <TwitterIcon size={32} round={true} />
+                            </TwitterShareButton>
+                            <WhatsappShareButton url={"https://mango-coast-0ce694803.azurestaticapps.net/article/" + id}>
+                                <WhatsappIcon size={32} round={true} />
+                            </WhatsappShareButton>
+                            <ViberShareButton url={"https://mango-coast-0ce694803.azurestaticapps.net/article/" + id}>
+                                <ViberIcon size={32} round={true} />
+                            </ViberShareButton>
+                        </div>
                     </Content>
+                    {/* <div class="fb-share-button" data-href={"https://mango-coast-0ce694803.azurestaticapps.net/article/" + id} data-layout="button" data-size="large">
+                        <a target="_blank" href={"https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmango-coast-0ce694803.azurestaticapps.net%2Farticle%2F" + id + "&amp;src=sdkpreparse"} class="fb-xfbml-parse-ignore">Share on Facebook</a>
+                    </div> */}
                 </>
             }
           <Footer />
