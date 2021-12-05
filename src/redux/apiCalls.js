@@ -1,6 +1,6 @@
 import axios from "axios";
 import link from '../links.json'
-import { updateCarousel, updateFootball, updateBasketball, updateOther, updateLatest, updateSingle } from "./newsSlice"
+import { updateCarousel, updateFootball, updateBasketball, updateOther, updateLatest, updateSingle, updateAuthor } from "./newsSlice"
 
 export const getCarousel = async (dispatch) => {
     dispatch(updateCarousel({
@@ -218,6 +218,31 @@ export const getSingleArticle = async (dispatch, id) => {
     } catch (err) {
         dispatch(updateSingle({
             article : {},
+            pending: false,
+            error: true
+        }));
+    }
+}
+
+export const getAuthor = async (dispatch, name) => {
+    dispatch(updateAuthor({
+            articles : [],
+            numArticles: 0,
+            pending: true,
+            error: false
+        }));
+    try {
+        const res = await axios.get(link.link + "/api/GetAuthorArticles/" + name);
+        dispatch(updateAuthor({
+            articles : res.data,
+            numArticles: res.data.length,
+            pending: false,
+            error: false
+        }));
+    } catch (err) {
+        dispatch(updateAuthor({
+            articles : [],
+            numArticles: 0,
             pending: false,
             error: true
         }));
