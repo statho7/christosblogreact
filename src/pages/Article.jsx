@@ -90,6 +90,8 @@ const Article = () => {
                         <p>Ημερομηνία: {articleData.date.slice(-2)}/{articleData.date.slice(5,7)}/{articleData.date.slice(0,4)}</p>
                         <br />
                         <div dangerouslySetInnerHTML={{__html: articleData.content}} />
+                        <p>Κατηγορία: {articleData.category}</p>
+                        <p>Υποκατηγορία: {articleData.subcategory}</p>
                     </Content>
                 </>
             }
